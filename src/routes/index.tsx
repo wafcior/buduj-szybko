@@ -277,7 +277,6 @@ function Index() {
             ))}
           </select>
         </div>
-        </div>
 
         {/* Nav */}
         <nav className="bg-[#f1f5f9] border-t border-b border-gray-300">
