@@ -364,7 +364,7 @@ function Index() {
 
         {/* Content */}
         <section className="text-[14px] leading-relaxed">
-          {view.kind === "home" && <HomeContent onPick={openCategory} />}
+          {view.kind === "home" && <HomeContent onPick={openCategory} city={city} />}
           {view.kind === "category" && currentCategory && (
             <CategoryContent category={currentCategory} onPick={(sid) => openService(currentCategory.id, sid)} />
           )}
