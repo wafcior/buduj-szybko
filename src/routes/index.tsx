@@ -146,10 +146,10 @@ type Contractor = {
 };
 
 const CONTRACTORS: Contractor[] = [
-  { name: "Andrzej Kowalczyk – Usługi Remontowe „REM-BUD”", city: "Warszawa, mazowieckie", years: 17, rating: 4.8, reviews: 142, termin: "rozpoczęcie w ciągu 7–10 dni", rateMod: 1.0, note: "Firma rodzinna z własną brygadą 4-osobową. Faktura VAT, gwarancja 24 m-ce." },
-  { name: "Błażej Nowicki – Zakład Ogólnobudowlany „NOWICKI”", city: "Pruszków, mazowieckie", years: 9, rating: 4.6, reviews: 87, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 0.88, note: "Konkurencyjna wycena, materiał po cenach hurtowych. Płatność etapowa." },
-  { name: "Mariusz Wójcik – „WÓJCIK Construction” Sp. z o.o.", city: "Warszawa, mazowieckie", years: 22, rating: 4.9, reviews: 318, termin: "rozpoczęcie w ciągu 21–28 dni", rateMod: 1.18, note: "Realizacje komercyjne i prywatne. Pełna dokumentacja powykonawcza, ubezpieczenie OC." },
-  { name: "Tadeusz Lewandowski – Usługi Wykończeniowe", city: "Legionowo, mazowieckie", years: 12, rating: 4.5, reviews: 64, termin: "rozpoczęcie w ciągu 5 dni", rateMod: 0.95, note: "Krótki termin realizacji. Specjalizacja w pracach wykończeniowych." },
+  { name: "Marek Sikora – Usługi Remontowe „SIKORA-BUD”", city: "Częstochowa, ul. Wręczycka (Stradom)", years: 14, rating: 4.7, reviews: 96, termin: "rozpoczęcie w ciągu 7–10 dni", rateMod: 1.0, note: "Firma rodzinna z 3-osobową brygadą. Faktura VAT, gwarancja 24 m-ce. Działamy na terenie Częstochowy i powiatu." },
+  { name: "Krzysztof Bęben – Zakład Ogólnobudowlany „BĘBEN”", city: "Częstochowa, dzielnica Tysiąclecie", years: 8, rating: 4.5, reviews: 51, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 0.88, note: "Konkurencyjna wycena, materiał po cenach hurtowych z hurtowni MPL Częstochowa. Płatność etapowa." },
+  { name: "Piotr Kaczmarek – „KACZMAREK Wykończenia”", city: "Blachownia k. Częstochowy", years: 11, rating: 4.6, reviews: 73, termin: "rozpoczęcie w ciągu 5–7 dni", rateMod: 0.95, note: "Specjalizacja: wykończenia wnętrz, gładzie, malowanie. Krótki termin, dojazd w obrębie 25 km od Częstochowy." },
+  { name: "Janusz Mazur – Usługi Dekarsko-Budowlane „MAZUR”", city: "Częstochowa, dzielnica Raków", years: 19, rating: 4.8, reviews: 128, termin: "rozpoczęcie w ciągu 21 dni", rateMod: 1.12, note: "Doświadczona ekipa 5-osobowa. Pełna dokumentacja, ubezpieczenie OC do 200 000 zł. Realizacje również w Kłobucku i Myszkowie." },
 ];
 
 const CITIES: string[] = [
