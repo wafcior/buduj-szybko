@@ -351,10 +351,10 @@ function Index() {
               szczegółowe wyceny od kilku firm działających w Twojej okolicy – bez podpisywania umów i bez zobowiązań.
             </p>
             <div className="flex flex-wrap gap-2 text-[12px] mb-6 text-slate-700">
-              <span className="bg-slate-100 border border-slate-200 px-2 py-1 rounded-md">✓ Bezpłatnie</span>
-              <span className="bg-slate-100 border border-slate-200 px-2 py-1 rounded-md">✓ Bez zobowiązań</span>
-              <span className="bg-slate-100 border border-slate-200 px-2 py-1 rounded-md">✓ Tylko zweryfikowane firmy</span>
-              <span className="bg-slate-100 border border-slate-200 px-2 py-1 rounded-md">✓ Działamy od 2009 roku</span>
+              <span className="bg-orange-50 border border-orange-200 px-2 py-1 rounded-md"><span className="text-[#ea580c]">✓</span> Bezpłatnie</span>
+              <span className="bg-orange-50 border border-orange-200 px-2 py-1 rounded-md"><span className="text-[#ea580c]">✓</span> Bez zobowiązań</span>
+              <span className="bg-orange-50 border border-orange-200 px-2 py-1 rounded-md"><span className="text-[#ea580c]">✓</span> Tylko zweryfikowane firmy</span>
+              <span className="bg-orange-50 border border-orange-200 px-2 py-1 rounded-md"><span className="text-[#ea580c]">✓</span> Działamy od 2009 roku</span>
             </div>
             <div className="grid grid-cols-3 gap-3">
               <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">
