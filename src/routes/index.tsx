@@ -302,6 +302,47 @@ function Index() {
         </nav>
       </header>
 
+      {/* Full-width hero on Home */}
+      {view.kind === "home" && (
+        <div className="bg-gradient-to-br from-[#1e40af] to-[#1e3a8a] text-white border-b-4 border-[#f59e0b]">
+          <div className="max-w-[1100px] mx-auto px-4 py-8">
+            <div className="text-[11px] uppercase tracking-wider text-[#fde68a] mb-2">
+              Witamy w serwisie Remivo{city ? " – " + city : ""}
+            </div>
+            <div className="text-[12px] uppercase tracking-wider text-white/80 mb-3">
+              Porównywarka ofert remontowych
+            </div>
+            <h1 className="text-[26px] sm:text-[32px] font-bold leading-tight mb-3" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+              Znajdź sprawdzoną firmę remontową w mieście {city}
+            </h1>
+            <p className="text-[14px] text-white/90 mb-4 max-w-[780px]">
+              Remivo to bezpłatny serwis, który łączy zleceniodawców z zaufanymi wykonawcami. W kilka chwil otrzymasz
+              szczegółowe wyceny od kilku firm działających w Twojej okolicy – bez podpisywania umów i bez zobowiązań.
+            </p>
+            <div className="flex flex-wrap gap-2 text-[12px] mb-6">
+              <span className="bg-white/15 px-2 py-1 rounded-md">✓ Bezpłatnie</span>
+              <span className="bg-white/15 px-2 py-1 rounded-md">✓ Bez zobowiązań</span>
+              <span className="bg-white/15 px-2 py-1 rounded-md">✓ Tylko zweryfikowane firmy</span>
+              <span className="bg-white/15 px-2 py-1 rounded-md">✓ Działamy od 2009 roku</span>
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              <div className="bg-white/10 border border-white/20 rounded-lg p-3 text-center">
+                <div className="text-[20px] sm:text-[22px] font-bold">12 000+</div>
+                <div className="text-[11px] text-white/80 uppercase tracking-wide">wycen</div>
+              </div>
+              <div className="bg-white/10 border border-white/20 rounded-lg p-3 text-center">
+                <div className="text-[20px] sm:text-[22px] font-bold">3 400+</div>
+                <div className="text-[11px] text-white/80 uppercase tracking-wide">wykonawców</div>
+              </div>
+              <div className="bg-white/10 border border-white/20 rounded-lg p-3 text-center">
+                <div className="text-[20px] sm:text-[22px] font-bold">4,7 / 5</div>
+                <div className="text-[11px] text-white/80 uppercase tracking-wide">średnia ocen</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Breadcrumbs */}
       <div className="max-w-[1100px] mx-auto px-4 py-2 text-xs text-gray-600">
         <button onClick={goHome} className="text-[#1e40af] hover:underline">Remivo</button>
@@ -439,42 +480,6 @@ function SectionHeader({ title }: { title: string }) {
 function HomeContent({ onPick, city }: { onPick: (id: string) => void; city: string }) {
   return (
     <div>
-      <SectionHeader title={`Witamy w serwisie Remivo${city ? " – " + city : ""}`} />
-
-      {/* Hero */}
-      <div className="border border-slate-200 bg-gradient-to-br from-[#1e40af] to-[#1e3a8a] text-white rounded-lg p-5 mb-5">
-        <div className="text-[11px] uppercase tracking-wider text-[#fde68a] mb-2">Porównywarka ofert remontowych</div>
-        <h2 className="text-[22px] font-bold leading-tight mb-2" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-          Znajdź sprawdzoną firmę remontową w mieście {city}
-        </h2>
-        <p className="text-[13px] text-white/90 mb-3">
-          Remivo to bezpłatny serwis, który łączy zleceniodawców z zaufanymi wykonawcami. W kilka chwil otrzymasz
-          szczegółowe wyceny od kilku firm działających w Twojej okolicy – bez podpisywania umów i bez zobowiązań.
-        </p>
-        <div className="flex flex-wrap gap-2 text-[12px]">
-          <span className="bg-white/15 px-2 py-1 rounded-md">✓ Bezpłatnie</span>
-          <span className="bg-white/15 px-2 py-1 rounded-md">✓ Bez zobowiązań</span>
-          <span className="bg-white/15 px-2 py-1 rounded-md">✓ Tylko zweryfikowane firmy</span>
-          <span className="bg-white/15 px-2 py-1 rounded-md">✓ Działamy od 2009 roku</span>
-        </div>
-      </div>
-
-      {/* Stats */}
-      <div className="grid grid-cols-3 gap-3 mb-5">
-        <div className="border border-slate-200 bg-white rounded-lg p-3 text-center">
-          <div className="text-[20px] font-bold text-[#1e40af]">12 000+</div>
-          <div className="text-[11px] text-gray-600 uppercase tracking-wide">wycen</div>
-        </div>
-        <div className="border border-slate-200 bg-white rounded-lg p-3 text-center">
-          <div className="text-[20px] font-bold text-[#1e40af]">3 400+</div>
-          <div className="text-[11px] text-gray-600 uppercase tracking-wide">wykonawców</div>
-        </div>
-        <div className="border border-slate-200 bg-white rounded-lg p-3 text-center">
-          <div className="text-[20px] font-bold text-[#1e40af]">4,7 / 5</div>
-          <div className="text-[11px] text-gray-600 uppercase tracking-wide">średnia ocen</div>
-        </div>
-      </div>
-
       {/* CTA to pick a category */}
       <div className="border border-amber-200 bg-amber-50 rounded-lg p-4 text-[13px] text-gray-800">
         <div className="font-semibold text-[#1e40af] mb-2">Aby rozpocząć – wybierz kategorię prac</div>
