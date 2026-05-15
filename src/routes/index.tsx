@@ -145,12 +145,43 @@ type Contractor = {
   note: string;
 };
 
-const CONTRACTORS: Contractor[] = [
-  { name: "Marek Sikora – Usługi Remontowe „SIKORA-BUD”", city: "Częstochowa, ul. Wręczycka (Stradom)", years: 14, rating: 4.7, reviews: 96, termin: "rozpoczęcie w ciągu 7–10 dni", rateMod: 1.0, note: "Firma rodzinna z 3-osobową brygadą. Faktura VAT, gwarancja 24 m-ce. Działamy na terenie Częstochowy i powiatu." },
-  { name: "Krzysztof Bęben – Zakład Ogólnobudowlany „BĘBEN”", city: "Częstochowa, dzielnica Tysiąclecie", years: 8, rating: 4.5, reviews: 51, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 0.88, note: "Konkurencyjna wycena, materiał po cenach hurtowych z hurtowni MPL Częstochowa. Płatność etapowa." },
-  { name: "Piotr Kaczmarek – „KACZMAREK Wykończenia”", city: "Blachownia k. Częstochowy", years: 11, rating: 4.6, reviews: 73, termin: "rozpoczęcie w ciągu 5–7 dni", rateMod: 0.95, note: "Specjalizacja: wykończenia wnętrz, gładzie, malowanie. Krótki termin, dojazd w obrębie 25 km od Częstochowy." },
-  { name: "Janusz Mazur – Usługi Dekarsko-Budowlane „MAZUR”", city: "Częstochowa, dzielnica Raków", years: 19, rating: 4.8, reviews: 128, termin: "rozpoczęcie w ciągu 21 dni", rateMod: 1.12, note: "Doświadczona ekipa 5-osobowa. Pełna dokumentacja, ubezpieczenie OC do 200 000 zł. Realizacje również w Kłobucku i Myszkowie." },
-];
+const CONTRACTORS_BY_CATEGORY: Record<string, Contractor[]> = {
+  sciany: [
+    { name: "Tynki Maszynowe Częstochowa – Tynki Gipsowe", city: "Częstochowa, Grabówka (mobilnie)", years: 12, rating: 4.7, reviews: 88, termin: "rozpoczęcie w ciągu 7–14 dni", rateMod: 0.95, note: "Specjalizacja: maszynowe tynki gipsowe i cementowo-wapienne. Własny agregat tynkarski, dojazd na terenie powiatu częstochowskiego." },
+    { name: "Budmix – Usługi Ogólnobudowlane", city: "Częstochowa, Północ / Raków", years: 16, rating: 4.6, reviews: 104, termin: "rozpoczęcie w ciągu 10–14 dni", rateMod: 1.0, note: "Kompleksowe roboty murarsko-tynkarskie, zabudowy GK. Faktura VAT, gwarancja 24 m-ce." },
+    { name: "Remonty-Dekor", city: "Częstochowa, Północ / Tysiąclecie", years: 9, rating: 4.5, reviews: 67, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 0.92, note: "Gładzie gipsowe, ścianki działowe GK, drobne prace murarskie. Płatność etapowa." },
+  ],
+  malowanie: [
+    { name: "Stacolor – Malowanie i Wykończenia", city: "Częstochowa, Lisiniec / Stradom", years: 13, rating: 4.7, reviews: 91, termin: "rozpoczęcie w ciągu 5–10 dni", rateMod: 1.0, note: "Malowanie mieszkań i lokali użytkowych, farby premium (Tikkurila, Dulux). Zabezpieczenie podłóg w cenie." },
+    { name: "Remonty-Dekor", city: "Częstochowa, Północ", years: 9, rating: 4.5, reviews: 67, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 0.9, note: "Malowanie ścian i sufitów, drobne naprawy gładzi. Konkurencyjna wycena, krótkie terminy." },
+    { name: "AZremont Zbigniew Śledź", city: "Częstochowa, Śródmieście (mobilnie)", years: 18, rating: 4.8, reviews: 142, termin: "rozpoczęcie w ciągu 10–14 dni", rateMod: 1.08, note: "Doświadczona ekipa, malowanie dekoracyjne, lakierowanie drewna. Ubezpieczenie OC, faktura VAT." },
+  ],
+  dachy: [
+    { name: "AZremont Zbigniew Śledź", city: "Częstochowa, Śródmieście / okolice", years: 18, rating: 4.8, reviews: 142, termin: "rozpoczęcie w ciągu 14–21 dni", rateMod: 1.05, note: "Pokrycia dachowe, naprawy doraźne, papa termozgrzewalna. Praca na wysokości – pełne ubezpieczenie." },
+    { name: "FRE-BUD – Usługi Dekarsko-Budowlane", city: "Częstochowa, Stradom / Raków", years: 15, rating: 4.7, reviews: 118, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 1.0, note: "Krycie dachówką, blachodachówką, obróbki blacharskie. Gwarancja 5 lat na wykonanie." },
+    { name: "Polska Grupa Linowa", city: "Częstochowa (mobilnie / region śląski)", years: 11, rating: 4.6, reviews: 74, termin: "rozpoczęcie w ciągu 7–10 dni", rateMod: 1.12, note: "Prace alpinistyczne, naprawy dachów spadzistych bez rusztowań. Szybki dojazd, krótkie terminy." },
+  ],
+  podlogi: [
+    { name: "Remonty-Dekor", city: "Częstochowa, Północ / Tysiąclecie", years: 9, rating: 4.5, reviews: 67, termin: "rozpoczęcie w ciągu 10–14 dni", rateMod: 0.92, note: "Układanie paneli, listew przypodłogowych, drobne wylewki naprawcze." },
+    { name: "KABUD Remonty", city: "Częstochowa, Wrzosowiak", years: 14, rating: 4.7, reviews: 102, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 1.0, note: "Wylewki samopoziomujące, parkiet, glazura. Własny sprzęt, faktura VAT." },
+    { name: "Syntech – Posadzki i Podłogi", city: "Częstochowa, Grabówka (mobilnie)", years: 10, rating: 4.6, reviews: 81, termin: "rozpoczęcie w ciągu 7–10 dni", rateMod: 1.05, note: "Posadzki przemysłowe i mieszkaniowe, wylewki anhydrytowe. Pomiar wilgotności w cenie." },
+  ],
+  instalacje: [
+    { name: "KABUD Remonty", city: "Częstochowa, Wrzosowiak", years: 14, rating: 4.7, reviews: 102, termin: "rozpoczęcie w ciągu 10–14 dni", rateMod: 1.0, note: "Instalacje wod-kan, c.o., elektryka. Uprawnienia SEP do 1 kV, protokoły pomiarowe." },
+    { name: "Remonty-Dekor", city: "Częstochowa, Północ", years: 9, rating: 4.5, reviews: 67, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 0.9, note: "Punkty elektryczne, drobne instalacje hydrauliczne. Konkurencyjna wycena." },
+    { name: "FRE-BUD – Usługi Dekarsko-Budowlane", city: "Częstochowa, Stradom / Raków", years: 15, rating: 4.7, reviews: 118, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 1.05, note: "Instalacje wewnętrzne kompleksowo, montaż grzejników, klimatyzacja split." },
+  ],
+  lazienki: [
+    { name: "KABUD Remonty", city: "Częstochowa, Wrzosowiak", years: 14, rating: 4.7, reviews: 102, termin: "rozpoczęcie w ciągu 14–21 dni", rateMod: 1.0, note: "Kompleksowe remonty łazienek i kuchni „pod klucz”. Koordynacja wszystkich branż." },
+    { name: "Syntech – Wykończenia Wnętrz", city: "Częstochowa, Grabówka / Północ", years: 10, rating: 4.6, reviews: 81, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 1.05, note: "Glazura, terakota, fugowanie epoksydowe. Doświadczenie w łazienkach o nietypowych kształtach." },
+    { name: "Remonty-Dekor", city: "Częstochowa, Północ", years: 9, rating: 4.5, reviews: 67, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 0.92, note: "Remonty łazienek w mieszkaniach blokowych, montaż armatury, drobne zabudowy GK." },
+  ],
+  elewacje: [
+    { name: "Stacolor – Elewacje i Ocieplenia", city: "Częstochowa, Lisiniec / Stradom", years: 13, rating: 4.7, reviews: 91, termin: "rozpoczęcie w ciągu 14–21 dni", rateMod: 1.0, note: "Ocieplenia ETICS, tynki silikonowe i silikatowe. Doradztwo w doborze systemu, faktura VAT." },
+    { name: "FRE-BUD – Usługi Dekarsko-Budowlane", city: "Częstochowa, Raków / Stradom", years: 15, rating: 4.7, reviews: 118, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 1.05, note: "Elewacje budynków jedno- i wielorodzinnych. Własne rusztowania, gwarancja 5 lat." },
+    { name: "AZremont Zbigniew Śledź", city: "Częstochowa, Śródmieście (mobilnie)", years: 18, rating: 4.8, reviews: 142, termin: "rozpoczęcie w ciągu 21 dni", rateMod: 1.1, note: "Renowacje elewacji, malowanie, drobne naprawy tynków zewnętrznych. Ubezpieczenie OC." },
+  ],
+};
 
 const CITIES: string[] = [
   "Warszawa", "Kraków", "Łódź", "Wrocław", "Poznań", "Gdańsk", "Szczecin", "Bydgoszcz",
