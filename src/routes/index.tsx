@@ -4,13 +4,13 @@ import { useState, useMemo } from "react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "RemontPRO – Porównywarka ofert remontowych i budowlanych" },
+      { title: "Remivo – Porównywarka ofert remontowych i budowlanych" },
       {
         name: "description",
         content:
           "Bezpłatne porównywanie ofert wykonawców remontowych i budowlanych w całej Polsce. Działamy od 2009 roku.",
       },
-      { property: "og:title", content: "RemontPRO – Porównywarka ofert remontowych" },
+      { property: "og:title", content: "Remivo – Porównywarka ofert remontowych" },
       {
         property: "og:description",
         content: "Porównaj oferty sprawdzonych firm remontowych w Twoim regionie.",
