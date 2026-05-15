@@ -4,13 +4,13 @@ import { useState, useMemo } from "react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "RemontPRO – Porównywarka ofert remontowych i budowlanych" },
+      { title: "Remivo – Porównywarka ofert remontowych i budowlanych" },
       {
         name: "description",
         content:
           "Bezpłatne porównywanie ofert wykonawców remontowych i budowlanych w całej Polsce. Działamy od 2009 roku.",
       },
-      { property: "og:title", content: "RemontPRO – Porównywarka ofert remontowych" },
+      { property: "og:title", content: "Remivo – Porównywarka ofert remontowych" },
       {
         property: "og:description",
         content: "Porównaj oferty sprawdzonych firm remontowych w Twoim regionie.",
@@ -152,6 +152,24 @@ const CONTRACTORS: Contractor[] = [
   { name: "Tadeusz Lewandowski – Usługi Wykończeniowe", city: "Legionowo, mazowieckie", years: 12, rating: 4.5, reviews: 64, termin: "rozpoczęcie w ciągu 5 dni", rateMod: 0.95, note: "Krótki termin realizacji. Specjalizacja w pracach wykończeniowych." },
 ];
 
+const CITIES: string[] = [
+  "Warszawa", "Kraków", "Łódź", "Wrocław", "Poznań", "Gdańsk", "Szczecin", "Bydgoszcz",
+  "Lublin", "Białystok", "Katowice", "Gdynia", "Częstochowa", "Radom", "Sosnowiec",
+  "Toruń", "Kielce", "Rzeszów", "Gliwice", "Zabrze", "Olsztyn", "Bielsko-Biała",
+  "Bytom", "Zielona Góra", "Rybnik", "Ruda Śląska", "Tychy", "Opole", "Gorzów Wielkopolski",
+  "Dąbrowa Górnicza", "Płock", "Elbląg", "Wałbrzych", "Włocławek", "Tarnów", "Chorzów",
+  "Koszalin", "Kalisz", "Legnica", "Grudziądz", "Jaworzno", "Słupsk", "Jastrzębie-Zdrój",
+  "Nowy Sącz", "Jelenia Góra", "Siedlce", "Mysłowice", "Konin", "Piotrków Trybunalski",
+  "Lubin", "Inowrocław", "Ostrowiec Świętokrzyski", "Suwałki", "Stargard", "Gniezno",
+  "Ostrów Wielkopolski", "Siemianowice Śląskie", "Głogów", "Pabianice", "Leszno",
+  "Żory", "Zamość", "Pruszków", "Łomża", "Ełk", "Tarnowskie Góry", "Chełm", "Tomaszów Mazowiecki",
+  "Przemyśl", "Stalowa Wola", "Kędzierzyn-Koźle", "Mielec", "Piła", "Biała Podlaska",
+  "Legionowo", "Świdnica", "Bełchatów", "Skierniewice", "Świnoujście", "Zgierz", "Wejherowo",
+  "Rumia", "Tczew", "Otwock", "Sopot", "Krosno", "Starachowice", "Nysa", "Racibórz",
+  "Radomsko", "Skarżysko-Kamienna", "Pruszcz Gdański", "Puławy", "Ostrołęka", "Lubliniec",
+  "Kołobrzeg", "Kutno", "Mińsk Mazowiecki", "Sieradz", "Tarnobrzeg", "Bolesławiec", "Sanok",
+];
+
 type View =
   | { kind: "home" }
   | { kind: "category"; categoryId: string }
@@ -162,6 +180,7 @@ type View =
 function Index() {
   const [view, setView] = useState<View>({ kind: "home" });
   const [quantityInput, setQuantityInput] = useState("");
+  const [city, setCity] = useState<string>("Warszawa");
 
   const currentCategory = useMemo(
     () => ("categoryId" in view ? CATEGORIES.find((c) => c.id === view.categoryId) : undefined),
@@ -211,22 +230,52 @@ function Index() {
       <header className="bg-white border-b-2 border-[#1e40af]">
         <div className="max-w-[1100px] mx-auto px-4 py-4 flex items-center justify-between">
           <button onClick={goHome} className="flex items-center gap-3 text-left">
-            <div className="w-12 h-12 bg-[#1e40af] text-white flex items-center justify-center font-bold text-xl border border-[#1e3a8a]">
-              R<span className="text-[#f59e0b]">P</span>
+            <div className="w-12 h-12 bg-[#1e40af] text-white flex items-center justify-center font-bold text-xl border border-[#1e3a8a] rounded-md">
+              R<span className="text-[#f59e0b]">v</span>
             </div>
             <div>
               <div className="text-2xl font-bold text-[#1e40af] leading-none" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-                Remont<span className="text-[#f59e0b]">PRO</span>
+                Remi<span className="text-[#f59e0b]">vo</span>
               </div>
               <div className="text-[11px] text-gray-600 mt-1 uppercase tracking-wide">
                 Porównywarka ofert remontowych i budowlanych
               </div>
             </div>
           </button>
-          <div className="hidden md:block text-right text-xs text-gray-700">
-            <div>Infolinia (pn–pt 8:00–17:00):</div>
-            <div className="text-lg font-bold text-[#1e40af]">22 350 41 28</div>
+          <div className="flex items-center gap-4">
+            <div className="hidden sm:flex flex-col text-[11px] text-gray-700">
+              <label htmlFor="city-select" className="font-semibold text-[#1e40af] uppercase tracking-wide">Twoje miasto</label>
+              <select
+                id="city-select"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className="mt-1 border border-slate-300 rounded-md px-2 py-1.5 text-[13px] bg-white focus:outline-none focus:border-[#1e40af] min-w-[160px]"
+              >
+                {CITIES.map((c) => (
+                  <option key={c} value={c}>{c}</option>
+                ))}
+              </select>
+            </div>
+            <div className="hidden md:block text-right text-xs text-gray-700">
+              <div>Infolinia (pn–pt 8:00–17:00):</div>
+              <div className="text-lg font-bold text-[#1e40af]">22 350 41 28</div>
+            </div>
           </div>
+        </div>
+
+        {/* Mobile city selector */}
+        <div className="sm:hidden border-t border-gray-200 px-4 py-2 flex items-center gap-2 bg-[#f8fafc]">
+          <label htmlFor="city-select-mobile" className="text-[11px] font-semibold text-[#1e40af] uppercase">Miasto:</label>
+          <select
+            id="city-select-mobile"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            className="flex-1 border border-slate-300 rounded-md px-2 py-1.5 text-[13px] bg-white focus:outline-none focus:border-[#1e40af]"
+          >
+            {CITIES.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
         </div>
 
         {/* Nav */}
@@ -255,7 +304,7 @@ function Index() {
 
       {/* Breadcrumbs */}
       <div className="max-w-[1100px] mx-auto px-4 py-2 text-xs text-gray-600">
-        <button onClick={goHome} className="text-[#1e40af] hover:underline">RemontPRO</button>
+        <button onClick={goHome} className="text-[#1e40af] hover:underline">Remivo</button>
         {currentCategory && (
           <>
             <span className="mx-1">›</span>
@@ -315,7 +364,7 @@ function Index() {
 
         {/* Content */}
         <section className="text-[14px] leading-relaxed">
-          {view.kind === "home" && <HomeContent onPick={openCategory} />}
+          {view.kind === "home" && <HomeContent onPick={openCategory} city={city} />}
           {view.kind === "category" && currentCategory && (
             <CategoryContent category={currentCategory} onPick={(sid) => openService(currentCategory.id, sid)} />
           )}
@@ -344,7 +393,7 @@ function Index() {
       <footer className="border-t-4 border-[#1e40af] bg-[#f1f5f9] text-[12px] text-gray-700">
         <div className="max-w-[1100px] mx-auto px-4 py-6 grid md:grid-cols-3 gap-6">
           <div>
-            <div className="font-bold text-[#1e40af] mb-2">RemontPRO sp. z o.o.</div>
+            <div className="font-bold text-[#1e40af] mb-2">Remivo sp. z o.o.</div>
             <p>Bezpłatny serwis porównywania ofert remontowych i budowlanych. Działamy na terenie całej Polski od 2009 roku. KRS: 0000345678 • NIP: 521-345-67-89</p>
             <p className="mt-2">ul. Prosta 44, 00-838 Warszawa</p>
           </div>
@@ -372,7 +421,7 @@ function Index() {
           </div>
         </div>
         <div className="border-t border-gray-300 py-3 text-center text-[11px] text-gray-600">
-          © 2009–2026 RemontPRO sp. z o.o. Wszelkie prawa zastrzeżone. Serwis ma charakter informacyjny. Prezentowane oferty nie stanowią oferty w rozumieniu Kodeksu cywilnego.
+          © 2009–2026 Remivo sp. z o.o. Wszelkie prawa zastrzeżone. Serwis ma charakter informacyjny. Prezentowane oferty nie stanowią oferty w rozumieniu Kodeksu cywilnego.
         </div>
       </footer>
     </div>
@@ -387,14 +436,47 @@ function SectionHeader({ title }: { title: string }) {
   );
 }
 
-function HomeContent({ onPick }: { onPick: (id: string) => void }) {
+function HomeContent({ onPick, city }: { onPick: (id: string) => void; city: string }) {
   return (
     <div>
-      <SectionHeader title="Witamy w serwisie RemontPRO" />
-      <p className="mb-4">
-        <strong>Bezpłatne porównywanie ofert</strong> wykonawców remontowych i budowlanych w całej Polsce. Wybierz kategorię prac, aby rozpocząć wycenę.
-      </p>
-      <div className="grid sm:grid-cols-2 gap-3">
+      <SectionHeader title={`Witamy w serwisie Remivo${city ? " – " + city : ""}`} />
+
+      {/* Hero */}
+      <div className="border border-slate-200 bg-gradient-to-br from-[#1e40af] to-[#1e3a8a] text-white rounded-lg p-5 mb-5">
+        <div className="text-[11px] uppercase tracking-wider text-[#fde68a] mb-2">Porównywarka ofert remontowych</div>
+        <h2 className="text-[22px] font-bold leading-tight mb-2" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+          Znajdź sprawdzoną firmę remontową w mieście {city}
+        </h2>
+        <p className="text-[13px] text-white/90 mb-3">
+          Remivo to bezpłatny serwis, który łączy zleceniodawców z zaufanymi wykonawcami. W kilka chwil otrzymasz
+          szczegółowe wyceny od kilku firm działających w Twojej okolicy – bez podpisywania umów i bez zobowiązań.
+        </p>
+        <div className="flex flex-wrap gap-2 text-[12px]">
+          <span className="bg-white/15 px-2 py-1 rounded-md">✓ Bezpłatnie</span>
+          <span className="bg-white/15 px-2 py-1 rounded-md">✓ Bez zobowiązań</span>
+          <span className="bg-white/15 px-2 py-1 rounded-md">✓ Tylko zweryfikowane firmy</span>
+          <span className="bg-white/15 px-2 py-1 rounded-md">✓ Działamy od 2009 roku</span>
+        </div>
+      </div>
+
+      {/* Stats */}
+      <div className="grid grid-cols-3 gap-3 mb-5">
+        <div className="border border-slate-200 bg-white rounded-lg p-3 text-center">
+          <div className="text-[20px] font-bold text-[#1e40af]">12 000+</div>
+          <div className="text-[11px] text-gray-600 uppercase tracking-wide">wycen</div>
+        </div>
+        <div className="border border-slate-200 bg-white rounded-lg p-3 text-center">
+          <div className="text-[20px] font-bold text-[#1e40af]">3 400+</div>
+          <div className="text-[11px] text-gray-600 uppercase tracking-wide">wykonawców</div>
+        </div>
+        <div className="border border-slate-200 bg-white rounded-lg p-3 text-center">
+          <div className="text-[20px] font-bold text-[#1e40af]">4,7 / 5</div>
+          <div className="text-[11px] text-gray-600 uppercase tracking-wide">średnia ocen</div>
+        </div>
+      </div>
+
+      <h3 className="text-[16px] font-bold text-[#1e40af] mb-3">Wybierz kategorię prac</h3>
+      <div className="grid sm:grid-cols-2 gap-3 mb-6">
         {CATEGORIES.map((cat) => (
           <button
             key={cat.id}
@@ -404,6 +486,58 @@ function HomeContent({ onPick }: { onPick: (id: string) => void }) {
             <div className="font-semibold text-[#1e40af] mb-1">» {cat.name}</div>
             <div className="text-[12px] text-gray-700">{cat.short}</div>
           </button>
+        ))}
+      </div>
+
+      {/* How it works */}
+      <h3 className="text-[16px] font-bold text-[#1e40af] mb-3">Jak to działa?</h3>
+      <div className="grid sm:grid-cols-3 gap-3 mb-6">
+        {[
+          { n: "1", t: "Wybierz usługę", d: "Określ kategorię i rodzaj prac, które chcesz zlecić – od malowania po kompleksowe remonty." },
+          { n: "2", t: "Podaj zakres", d: "Wpisz metraż lub liczbę punktów. System dobierze odpowiednich wykonawców z Twojego miasta." },
+          { n: "3", t: "Porównaj oferty", d: "W ciągu chwili zobaczysz wyceny i terminy realizacji. Wybierasz tylko to, co Ci odpowiada." },
+        ].map((s) => (
+          <div key={s.n} className="border border-slate-200 bg-white rounded-lg p-3">
+            <div className="w-7 h-7 bg-[#f59e0b] text-white rounded-full flex items-center justify-center font-bold mb-2">{s.n}</div>
+            <div className="font-semibold text-[#1e40af] mb-1 text-[14px]">{s.t}</div>
+            <div className="text-[12px] text-gray-700">{s.d}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Why us */}
+      <h3 className="text-[16px] font-bold text-[#1e40af] mb-3">Dlaczego Remivo?</h3>
+      <div className="border border-slate-200 bg-white rounded-lg p-4 mb-6 text-[13px] leading-relaxed text-gray-800 space-y-2">
+        <p>
+          <strong>Remivo</strong> działa na rynku remontowo-budowlanym od 2009 roku i jest jedną z największych
+          porównywarek ofert wykonawczych w Polsce. Każdego miesiąca pomagamy tysiącom klientów wybrać firmę,
+          która zrealizuje remont solidnie, terminowo i w uczciwej cenie.
+        </p>
+        <p>
+          Współpracujemy wyłącznie ze sprawdzonymi wykonawcami. Każda firma w naszej bazie posiada zweryfikowane
+          dokumenty rejestrowe, ubezpieczenie OC oraz pozytywne opinie wcześniejszych klientów. Dzięki temu masz
+          pewność, że trafisz na profesjonalistę, a nie przypadkową ekipę z ogłoszenia.
+        </p>
+        <p>
+          Korzystanie z serwisu jest <strong>całkowicie bezpłatne</strong> i nie wymaga rejestracji.
+          Otrzymane wyceny są niezobowiązujące – sam decydujesz, czy i z kim podpiszesz umowę.
+        </p>
+      </div>
+
+      {/* Testimonials */}
+      <h3 className="text-[16px] font-bold text-[#1e40af] mb-3">Co mówią klienci</h3>
+      <div className="grid sm:grid-cols-2 gap-3 mb-2">
+        {[
+          { who: "Anna K.", where: "Częstochowa", txt: "W jeden dzień dostałam trzy konkretne wyceny remontu łazienki. Wybrałam najlepszą i nie żałuję – wszystko zgodnie z umową." },
+          { who: "Marcin W.", where: "Warszawa", txt: "Świetna sprawa. Szybko, konkretnie, bez naciągania. Polecam każdemu, kto planuje większy remont." },
+          { who: "Joanna P.", where: "Kraków", txt: "Po dwóch nieudanych ekipach trafiłam tu i wreszcie znalazłam fachowca, który zrobił wszystko porządnie." },
+          { who: "Tomasz R.", where: "Wrocław", txt: "Wycena dachu w 5 minut. Cena uczciwa, ekipa terminowa. Polecam serdecznie." },
+        ].map((o) => (
+          <div key={o.who} className="border border-slate-200 bg-[#f8fafc] rounded-lg p-3 text-[13px]">
+            <div className="text-[#f59e0b] mb-1">★★★★★</div>
+            <div className="text-gray-800 italic mb-2">„{o.txt}”</div>
+            <div className="text-[11px] text-gray-600">— {o.who}, {o.where}</div>
+          </div>
         ))}
       </div>
     </div>
