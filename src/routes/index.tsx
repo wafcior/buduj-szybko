@@ -145,12 +145,43 @@ type Contractor = {
   note: string;
 };
 
-const CONTRACTORS: Contractor[] = [
-  { name: "Marek Sikora – Usługi Remontowe „SIKORA-BUD”", city: "Częstochowa, ul. Wręczycka (Stradom)", years: 14, rating: 4.7, reviews: 96, termin: "rozpoczęcie w ciągu 7–10 dni", rateMod: 1.0, note: "Firma rodzinna z 3-osobową brygadą. Faktura VAT, gwarancja 24 m-ce. Działamy na terenie Częstochowy i powiatu." },
-  { name: "Krzysztof Bęben – Zakład Ogólnobudowlany „BĘBEN”", city: "Częstochowa, dzielnica Tysiąclecie", years: 8, rating: 4.5, reviews: 51, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 0.88, note: "Konkurencyjna wycena, materiał po cenach hurtowych z hurtowni MPL Częstochowa. Płatność etapowa." },
-  { name: "Piotr Kaczmarek – „KACZMAREK Wykończenia”", city: "Blachownia k. Częstochowy", years: 11, rating: 4.6, reviews: 73, termin: "rozpoczęcie w ciągu 5–7 dni", rateMod: 0.95, note: "Specjalizacja: wykończenia wnętrz, gładzie, malowanie. Krótki termin, dojazd w obrębie 25 km od Częstochowy." },
-  { name: "Janusz Mazur – Usługi Dekarsko-Budowlane „MAZUR”", city: "Częstochowa, dzielnica Raków", years: 19, rating: 4.8, reviews: 128, termin: "rozpoczęcie w ciągu 21 dni", rateMod: 1.12, note: "Doświadczona ekipa 5-osobowa. Pełna dokumentacja, ubezpieczenie OC do 200 000 zł. Realizacje również w Kłobucku i Myszkowie." },
-];
+const CONTRACTORS_BY_CATEGORY: Record<string, Contractor[]> = {
+  sciany: [
+    { name: "Tynki Maszynowe Częstochowa – Tynki Gipsowe", city: "Częstochowa, Grabówka (mobilnie)", years: 12, rating: 4.7, reviews: 88, termin: "rozpoczęcie w ciągu 7–14 dni", rateMod: 0.95, note: "Specjalizacja: maszynowe tynki gipsowe i cementowo-wapienne. Własny agregat tynkarski, dojazd na terenie powiatu częstochowskiego." },
+    { name: "Budmix – Usługi Ogólnobudowlane", city: "Częstochowa, Północ / Raków", years: 16, rating: 4.6, reviews: 104, termin: "rozpoczęcie w ciągu 10–14 dni", rateMod: 1.0, note: "Kompleksowe roboty murarsko-tynkarskie, zabudowy GK. Faktura VAT, gwarancja 24 m-ce." },
+    { name: "Remonty-Dekor", city: "Częstochowa, Północ / Tysiąclecie", years: 9, rating: 4.5, reviews: 67, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 0.92, note: "Gładzie gipsowe, ścianki działowe GK, drobne prace murarskie. Płatność etapowa." },
+  ],
+  malowanie: [
+    { name: "Stacolor – Malowanie i Wykończenia", city: "Częstochowa, Lisiniec / Stradom", years: 13, rating: 4.7, reviews: 91, termin: "rozpoczęcie w ciągu 5–10 dni", rateMod: 1.0, note: "Malowanie mieszkań i lokali użytkowych, farby premium (Tikkurila, Dulux). Zabezpieczenie podłóg w cenie." },
+    { name: "Remonty-Dekor", city: "Częstochowa, Północ", years: 9, rating: 4.5, reviews: 67, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 0.9, note: "Malowanie ścian i sufitów, drobne naprawy gładzi. Konkurencyjna wycena, krótkie terminy." },
+    { name: "AZremont Zbigniew Śledź", city: "Częstochowa, Śródmieście (mobilnie)", years: 18, rating: 4.8, reviews: 142, termin: "rozpoczęcie w ciągu 10–14 dni", rateMod: 1.08, note: "Doświadczona ekipa, malowanie dekoracyjne, lakierowanie drewna. Ubezpieczenie OC, faktura VAT." },
+  ],
+  dachy: [
+    { name: "AZremont Zbigniew Śledź", city: "Częstochowa, Śródmieście / okolice", years: 18, rating: 4.8, reviews: 142, termin: "rozpoczęcie w ciągu 14–21 dni", rateMod: 1.05, note: "Pokrycia dachowe, naprawy doraźne, papa termozgrzewalna. Praca na wysokości – pełne ubezpieczenie." },
+    { name: "FRE-BUD – Usługi Dekarsko-Budowlane", city: "Częstochowa, Stradom / Raków", years: 15, rating: 4.7, reviews: 118, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 1.0, note: "Krycie dachówką, blachodachówką, obróbki blacharskie. Gwarancja 5 lat na wykonanie." },
+    { name: "Polska Grupa Linowa", city: "Częstochowa (mobilnie / region śląski)", years: 11, rating: 4.6, reviews: 74, termin: "rozpoczęcie w ciągu 7–10 dni", rateMod: 1.12, note: "Prace alpinistyczne, naprawy dachów spadzistych bez rusztowań. Szybki dojazd, krótkie terminy." },
+  ],
+  podlogi: [
+    { name: "Remonty-Dekor", city: "Częstochowa, Północ / Tysiąclecie", years: 9, rating: 4.5, reviews: 67, termin: "rozpoczęcie w ciągu 10–14 dni", rateMod: 0.92, note: "Układanie paneli, listew przypodłogowych, drobne wylewki naprawcze." },
+    { name: "KABUD Remonty", city: "Częstochowa, Wrzosowiak", years: 14, rating: 4.7, reviews: 102, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 1.0, note: "Wylewki samopoziomujące, parkiet, glazura. Własny sprzęt, faktura VAT." },
+    { name: "Syntech – Posadzki i Podłogi", city: "Częstochowa, Grabówka (mobilnie)", years: 10, rating: 4.6, reviews: 81, termin: "rozpoczęcie w ciągu 7–10 dni", rateMod: 1.05, note: "Posadzki przemysłowe i mieszkaniowe, wylewki anhydrytowe. Pomiar wilgotności w cenie." },
+  ],
+  instalacje: [
+    { name: "KABUD Remonty", city: "Częstochowa, Wrzosowiak", years: 14, rating: 4.7, reviews: 102, termin: "rozpoczęcie w ciągu 10–14 dni", rateMod: 1.0, note: "Instalacje wod-kan, c.o., elektryka. Uprawnienia SEP do 1 kV, protokoły pomiarowe." },
+    { name: "Remonty-Dekor", city: "Częstochowa, Północ", years: 9, rating: 4.5, reviews: 67, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 0.9, note: "Punkty elektryczne, drobne instalacje hydrauliczne. Konkurencyjna wycena." },
+    { name: "FRE-BUD – Usługi Dekarsko-Budowlane", city: "Częstochowa, Stradom / Raków", years: 15, rating: 4.7, reviews: 118, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 1.05, note: "Instalacje wewnętrzne kompleksowo, montaż grzejników, klimatyzacja split." },
+  ],
+  lazienki: [
+    { name: "KABUD Remonty", city: "Częstochowa, Wrzosowiak", years: 14, rating: 4.7, reviews: 102, termin: "rozpoczęcie w ciągu 14–21 dni", rateMod: 1.0, note: "Kompleksowe remonty łazienek i kuchni „pod klucz”. Koordynacja wszystkich branż." },
+    { name: "Syntech – Wykończenia Wnętrz", city: "Częstochowa, Grabówka / Północ", years: 10, rating: 4.6, reviews: 81, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 1.05, note: "Glazura, terakota, fugowanie epoksydowe. Doświadczenie w łazienkach o nietypowych kształtach." },
+    { name: "Remonty-Dekor", city: "Częstochowa, Północ", years: 9, rating: 4.5, reviews: 67, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 0.92, note: "Remonty łazienek w mieszkaniach blokowych, montaż armatury, drobne zabudowy GK." },
+  ],
+  elewacje: [
+    { name: "Stacolor – Elewacje i Ocieplenia", city: "Częstochowa, Lisiniec / Stradom", years: 13, rating: 4.7, reviews: 91, termin: "rozpoczęcie w ciągu 14–21 dni", rateMod: 1.0, note: "Ocieplenia ETICS, tynki silikonowe i silikatowe. Doradztwo w doborze systemu, faktura VAT." },
+    { name: "FRE-BUD – Usługi Dekarsko-Budowlane", city: "Częstochowa, Raków / Stradom", years: 15, rating: 4.7, reviews: 118, termin: "rozpoczęcie w ciągu 14 dni", rateMod: 1.05, note: "Elewacje budynków jedno- i wielorodzinnych. Własne rusztowania, gwarancja 5 lat." },
+    { name: "AZremont Zbigniew Śledź", city: "Częstochowa, Śródmieście (mobilnie)", years: 18, rating: 4.8, reviews: 142, termin: "rozpoczęcie w ciągu 21 dni", rateMod: 1.1, note: "Renowacje elewacji, malowanie, drobne naprawy tynków zewnętrznych. Ubezpieczenie OC." },
+  ],
+};
 
 const CITIES: string[] = [
   "Warszawa", "Kraków", "Łódź", "Wrocław", "Poznań", "Gdańsk", "Szczecin", "Bydgoszcz",
@@ -231,11 +262,11 @@ function Index() {
         <div className="max-w-[1100px] mx-auto px-4 py-4 flex items-center justify-between">
           <button onClick={goHome} className="flex items-center gap-3 text-left">
             <div className="w-12 h-12 bg-[#475569] text-white flex items-center justify-center font-bold text-xl border border-[#334155] rounded-md">
-              R<span className="text-[#64748b]">v</span>
+              R<span className="text-[#fb923c]">v</span>
             </div>
             <div>
               <div className="text-2xl font-bold text-[#475569] leading-none" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-                Remi<span className="text-[#64748b]">vo</span>
+                Remi<span className="text-[#ea580c]">vo</span>
               </div>
               <div className="text-[11px] text-gray-600 mt-1 uppercase tracking-wide">
                 Porównywarka ofert remontowych i budowlanych
@@ -320,10 +351,10 @@ function Index() {
               szczegółowe wyceny od kilku firm działających w Twojej okolicy – bez podpisywania umów i bez zobowiązań.
             </p>
             <div className="flex flex-wrap gap-2 text-[12px] mb-6 text-slate-700">
-              <span className="bg-slate-100 border border-slate-200 px-2 py-1 rounded-md">✓ Bezpłatnie</span>
-              <span className="bg-slate-100 border border-slate-200 px-2 py-1 rounded-md">✓ Bez zobowiązań</span>
-              <span className="bg-slate-100 border border-slate-200 px-2 py-1 rounded-md">✓ Tylko zweryfikowane firmy</span>
-              <span className="bg-slate-100 border border-slate-200 px-2 py-1 rounded-md">✓ Działamy od 2009 roku</span>
+              <span className="bg-orange-50 border border-orange-200 px-2 py-1 rounded-md"><span className="text-[#ea580c]">✓</span> Bezpłatnie</span>
+              <span className="bg-orange-50 border border-orange-200 px-2 py-1 rounded-md"><span className="text-[#ea580c]">✓</span> Bez zobowiązań</span>
+              <span className="bg-orange-50 border border-orange-200 px-2 py-1 rounded-md"><span className="text-[#ea580c]">✓</span> Tylko zweryfikowane firmy</span>
+              <span className="bg-orange-50 border border-orange-200 px-2 py-1 rounded-md"><span className="text-[#ea580c]">✓</span> Działamy od 2009 roku</span>
             </div>
             <div className="grid grid-cols-3 gap-3">
               <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">
@@ -622,16 +653,16 @@ function Results({
   quantity: number;
   onBack: () => void;
 }) {
-  // Deterministic selection of 1-4 contractors based on quantity
-  const count = Math.min(4, Math.max(2, ((Math.floor(quantity * 7) % 3) + 2)));
-  const offers = CONTRACTORS.slice(0, count).map((c, idx) => {
+  // Pick contractors based on category, deterministic count from quantity
+  const pool = CONTRACTORS_BY_CATEGORY[category.id] ?? [];
+  const count = Math.min(pool.length, Math.max(1, ((Math.floor(quantity * 7) % pool.length) + 1)));
+  const offers = pool.slice(0, count).map((c) => {
     const [lo, hi] = service.basePrice;
     const mid = (lo + hi) / 2;
-    // ceny podniesione o 30% w stosunku do bazy
+    // ceny podniesione o 30% w stosunku do bazy – tylko robocizna
     const unitPrice = Math.round(mid * c.rateMod * 1.3);
     const total = Math.round(unitPrice * quantity);
-    const materials = Math.round(total * (0.35 + (idx % 3) * 0.05));
-    return { c, unitPrice, total, materials };
+    return { c, unitPrice, total };
   });
 
   return (
@@ -646,22 +677,28 @@ function Results({
         </div>
       </div>
 
+      <div className="border-l-4 border-[#ea580c] bg-orange-50 px-3 py-2 mb-4 text-[12px] text-slate-800 rounded-r-md">
+        <strong className="text-[#c2410c]">Uwaga:</strong> wszystkie poniższe ceny obejmują wyłącznie <strong>robociznę</strong>.
+        Koszt materiałów budowlanych (np. tynk, farba, panele, glazura, papa itp.) nie jest wliczony i pokrywa go inwestor osobno –
+        zgodnie z faktycznym zużyciem oraz wybranym standardem materiału.
+      </div>
+
       <p className="mb-4 text-[13px] text-gray-700">
-        Znaleziono <strong>{offers.length}</strong> {offers.length === 1 ? "ofertę" : offers.length < 5 ? "oferty" : "ofert"} od sprawdzonych wykonawców. Oferty posortowane według rekomendacji systemu.
+        Znaleziono <strong>{offers.length}</strong> {offers.length === 1 ? "ofertę" : offers.length < 5 ? "oferty" : "ofert"} od sprawdzonych wykonawców z miasta Częstochowa. Oferty posortowane według rekomendacji systemu.
       </p>
 
       <div className="space-y-3">
-        {offers.map(({ c, unitPrice, total, materials }, i) => (
-          <div key={c.name} className="border border-slate-200 bg-white rounded-lg">
+        {offers.map(({ c, unitPrice, total }, i) => (
+          <div key={c.name} className="border border-slate-200 bg-white rounded-lg overflow-hidden">
             <div className="bg-[#f1f5f9] border-b border-gray-300 px-3 py-2 flex justify-between items-center">
               <div className="font-semibold text-[#475569] text-[14px]">
-                #{i + 1} &nbsp; {c.name}
+                <span className="text-[#ea580c]">#{i + 1}</span> &nbsp; {c.name}
               </div>
               <div className="text-[12px] text-gray-700">
                 ★ {c.rating.toFixed(1)} ({c.reviews} opinii)
               </div>
             </div>
-            <div className="grid md:grid-cols-[1fr_220px]">
+            <div className="grid md:grid-cols-[1fr_240px]">
               <div className="p-3 text-[13px]">
                 <div className="text-gray-700 mb-2">{c.note}</div>
                 <table className="text-[12px] w-full">
@@ -669,18 +706,20 @@ function Results({
                     <tr><td className="text-gray-600 py-0.5 pr-3">Lokalizacja:</td><td>{c.city}</td></tr>
                     <tr><td className="text-gray-600 py-0.5 pr-3">Doświadczenie:</td><td>{c.years} lat na rynku</td></tr>
                     <tr><td className="text-gray-600 py-0.5 pr-3">Termin:</td><td>{c.termin}</td></tr>
-                    <tr><td className="text-gray-600 py-0.5 pr-3">Cena jedn.:</td><td>{unitPrice.toLocaleString("pl-PL")} zł / {service.unit}</td></tr>
-                    <tr><td className="text-gray-600 py-0.5 pr-3">w tym materiał:</td><td>~ {materials.toLocaleString("pl-PL")} zł</td></tr>
+                    <tr><td className="text-gray-600 py-0.5 pr-3">Cena robocizny:</td><td>{unitPrice.toLocaleString("pl-PL")} zł / {service.unit}</td></tr>
                   </tbody>
                 </table>
               </div>
               <div className="bg-[#f8fafc] border-l border-gray-300 p-3 text-center flex flex-col justify-center">
-                <div className="text-[11px] text-gray-700 uppercase tracking-wide">Wycena całkowita</div>
+                <div className="text-[11px] text-gray-700 uppercase tracking-wide">Wycena robocizny</div>
                 <div className="text-[22px] font-bold text-[#475569] my-1" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-                  {total.toLocaleString("pl-PL")} zł
+                  {total.toLocaleString("pl-PL")} zł <span className="text-[14px] text-[#ea580c] font-semibold">+ materiały</span>
                 </div>
-                <div className="text-[10px] text-gray-600 mb-2">brutto, z VAT 8%/23%</div>
-                <button className="bg-[#64748b] hover:bg-[#475569] text-white text-[12px] font-semibold px-3 py-2 border border-[#334155]">
+                <div className="text-[10px] text-gray-600 leading-tight mb-2">
+                  Cena dotyczy <strong>tylko robocizny</strong>.<br/>
+                  Koszt materiałów po stronie inwestora.
+                </div>
+                <button className="bg-[#475569] hover:bg-[#ea580c] transition-colors text-white text-[12px] font-semibold px-3 py-2 border border-[#334155] rounded-md">
                   Skontaktuj się ▸
                 </button>
               </div>
@@ -690,7 +729,7 @@ function Results({
       </div>
 
       <div className="text-[11px] text-gray-600 mt-4 border-t border-gray-300 pt-3">
-        Powyższe wyceny mają charakter szacunkowy i zostały wygenerowane na podstawie średnich stawek rynkowych obowiązujących w Państwa regionie. Ostateczna cena zostanie ustalona po wizji lokalnej i przedstawieniu kosztorysu przez wykonawcę.
+        Powyższe wyceny mają charakter szacunkowy i obejmują wyłącznie koszt robocizny – materiały budowlane nie są wliczone i są zamawiane osobno przez inwestora. Ostateczna cena zostanie ustalona po wizji lokalnej i przedstawieniu kosztorysu przez wykonawcę.
       </div>
     </div>
   );
