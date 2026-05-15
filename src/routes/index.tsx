@@ -306,37 +306,37 @@ function Index() {
       {view.kind === "home" && (
         <div className="bg-white border-b border-slate-200 text-slate-900">
           <div className="max-w-[1100px] mx-auto px-4 py-8">
-            <div className="text-[11px] uppercase tracking-wider text-[#e2e8f0] mb-2">
+            <div className="text-[11px] uppercase tracking-wider text-slate-500 mb-2">
               Witamy w serwisie Remivo{city ? " – " + city : ""}
             </div>
-            <div className="text-[12px] uppercase tracking-wider text-white/80 mb-3">
+            <div className="text-[12px] uppercase tracking-wider text-slate-500 mb-3">
               Porównywarka ofert remontowych
             </div>
-            <h1 className="text-[26px] sm:text-[32px] font-bold leading-tight mb-3" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+            <h1 className="text-[26px] sm:text-[32px] font-bold leading-tight mb-3 text-slate-900" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
               Znajdź sprawdzoną firmę remontową w mieście {city}
             </h1>
-            <p className="text-[14px] text-white/90 mb-4 max-w-[780px]">
+            <p className="text-[14px] text-slate-700 mb-4 max-w-[780px]">
               Remivo to bezpłatny serwis, który łączy zleceniodawców z zaufanymi wykonawcami. W kilka chwil otrzymasz
               szczegółowe wyceny od kilku firm działających w Twojej okolicy – bez podpisywania umów i bez zobowiązań.
             </p>
-            <div className="flex flex-wrap gap-2 text-[12px] mb-6">
-              <span className="bg-white/15 px-2 py-1 rounded-md">✓ Bezpłatnie</span>
-              <span className="bg-white/15 px-2 py-1 rounded-md">✓ Bez zobowiązań</span>
-              <span className="bg-white/15 px-2 py-1 rounded-md">✓ Tylko zweryfikowane firmy</span>
-              <span className="bg-white/15 px-2 py-1 rounded-md">✓ Działamy od 2009 roku</span>
+            <div className="flex flex-wrap gap-2 text-[12px] mb-6 text-slate-700">
+              <span className="bg-slate-100 border border-slate-200 px-2 py-1 rounded-md">✓ Bezpłatnie</span>
+              <span className="bg-slate-100 border border-slate-200 px-2 py-1 rounded-md">✓ Bez zobowiązań</span>
+              <span className="bg-slate-100 border border-slate-200 px-2 py-1 rounded-md">✓ Tylko zweryfikowane firmy</span>
+              <span className="bg-slate-100 border border-slate-200 px-2 py-1 rounded-md">✓ Działamy od 2009 roku</span>
             </div>
             <div className="grid grid-cols-3 gap-3">
-              <div className="bg-white/10 border border-white/20 rounded-lg p-3 text-center">
-                <div className="text-[20px] sm:text-[22px] font-bold">12 000+</div>
-                <div className="text-[11px] text-white/80 uppercase tracking-wide">wycen</div>
+              <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">
+                <div className="text-[20px] sm:text-[22px] font-bold text-slate-800">12 000+</div>
+                <div className="text-[11px] text-slate-500 uppercase tracking-wide">wycen</div>
               </div>
-              <div className="bg-white/10 border border-white/20 rounded-lg p-3 text-center">
-                <div className="text-[20px] sm:text-[22px] font-bold">3 400+</div>
-                <div className="text-[11px] text-white/80 uppercase tracking-wide">wykonawców</div>
+              <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">
+                <div className="text-[20px] sm:text-[22px] font-bold text-slate-800">3 400+</div>
+                <div className="text-[11px] text-slate-500 uppercase tracking-wide">wykonawców</div>
               </div>
-              <div className="bg-white/10 border border-white/20 rounded-lg p-3 text-center">
-                <div className="text-[20px] sm:text-[22px] font-bold">4,7 / 5</div>
-                <div className="text-[11px] text-white/80 uppercase tracking-wide">średnia ocen</div>
+              <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">
+                <div className="text-[20px] sm:text-[22px] font-bold text-slate-800">4,7 / 5</div>
+                <div className="text-[11px] text-slate-500 uppercase tracking-wide">średnia ocen</div>
               </div>
             </div>
           </div>
