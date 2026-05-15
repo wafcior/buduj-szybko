@@ -475,70 +475,24 @@ function HomeContent({ onPick, city }: { onPick: (id: string) => void; city: str
         </div>
       </div>
 
-      <h3 className="text-[16px] font-bold text-[#1e40af] mb-3">Wybierz kategorię prac</h3>
-      <div className="grid sm:grid-cols-2 gap-3 mb-6">
-        {CATEGORIES.map((cat) => (
-          <button
-            key={cat.id}
-            onClick={() => onPick(cat.id)}
-            className="text-left border border-slate-200 bg-white rounded-lg hover:border-[#1e40af] hover:bg-[#f1f5f9] p-3 transition-colors"
-          >
-            <div className="font-semibold text-[#1e40af] mb-1">» {cat.name}</div>
-            <div className="text-[12px] text-gray-700">{cat.short}</div>
-          </button>
-        ))}
-      </div>
-
-      {/* How it works */}
-      <h3 className="text-[16px] font-bold text-[#1e40af] mb-3">Jak to działa?</h3>
-      <div className="grid sm:grid-cols-3 gap-3 mb-6">
-        {[
-          { n: "1", t: "Wybierz usługę", d: "Określ kategorię i rodzaj prac, które chcesz zlecić – od malowania po kompleksowe remonty." },
-          { n: "2", t: "Podaj zakres", d: "Wpisz metraż lub liczbę punktów. System dobierze odpowiednich wykonawców z Twojego miasta." },
-          { n: "3", t: "Porównaj oferty", d: "W ciągu chwili zobaczysz wyceny i terminy realizacji. Wybierasz tylko to, co Ci odpowiada." },
-        ].map((s) => (
-          <div key={s.n} className="border border-slate-200 bg-white rounded-lg p-3">
-            <div className="w-7 h-7 bg-[#f59e0b] text-white rounded-full flex items-center justify-center font-bold mb-2">{s.n}</div>
-            <div className="font-semibold text-[#1e40af] mb-1 text-[14px]">{s.t}</div>
-            <div className="text-[12px] text-gray-700">{s.d}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* Why us */}
-      <h3 className="text-[16px] font-bold text-[#1e40af] mb-3">Dlaczego Remivo?</h3>
-      <div className="border border-slate-200 bg-white rounded-lg p-4 mb-6 text-[13px] leading-relaxed text-gray-800 space-y-2">
-        <p>
-          <strong>Remivo</strong> działa na rynku remontowo-budowlanym od 2009 roku i jest jedną z największych
-          porównywarek ofert wykonawczych w Polsce. Każdego miesiąca pomagamy tysiącom klientów wybrać firmę,
-          która zrealizuje remont solidnie, terminowo i w uczciwej cenie.
+      {/* CTA to pick a category */}
+      <div className="border border-amber-200 bg-amber-50 rounded-lg p-4 text-[13px] text-gray-800">
+        <div className="font-semibold text-[#1e40af] mb-2">Aby rozpocząć – wybierz kategorię prac</div>
+        <p className="mb-3">
+          Skorzystaj z menu powyżej lub z listy kategorii po lewej stronie (np. <em>Ściany i Tynki</em>, <em>Malowanie</em>, <em>Dachy</em>),
+          a następnie wskaż konkretny rodzaj robót i podaj zakres. W kilka sekund otrzymasz oferty wykonawców z miasta {city}.
         </p>
-        <p>
-          Współpracujemy wyłącznie ze sprawdzonymi wykonawcami. Każda firma w naszej bazie posiada zweryfikowane
-          dokumenty rejestrowe, ubezpieczenie OC oraz pozytywne opinie wcześniejszych klientów. Dzięki temu masz
-          pewność, że trafisz na profesjonalistę, a nie przypadkową ekipę z ogłoszenia.
-        </p>
-        <p>
-          Korzystanie z serwisu jest <strong>całkowicie bezpłatne</strong> i nie wymaga rejestracji.
-          Otrzymane wyceny są niezobowiązujące – sam decydujesz, czy i z kim podpiszesz umowę.
-        </p>
-      </div>
-
-      {/* Testimonials */}
-      <h3 className="text-[16px] font-bold text-[#1e40af] mb-3">Co mówią klienci</h3>
-      <div className="grid sm:grid-cols-2 gap-3 mb-2">
-        {[
-          { who: "Anna K.", where: "Częstochowa", txt: "W jeden dzień dostałam trzy konkretne wyceny remontu łazienki. Wybrałam najlepszą i nie żałuję – wszystko zgodnie z umową." },
-          { who: "Marcin W.", where: "Warszawa", txt: "Świetna sprawa. Szybko, konkretnie, bez naciągania. Polecam każdemu, kto planuje większy remont." },
-          { who: "Joanna P.", where: "Kraków", txt: "Po dwóch nieudanych ekipach trafiłam tu i wreszcie znalazłam fachowca, który zrobił wszystko porządnie." },
-          { who: "Tomasz R.", where: "Wrocław", txt: "Wycena dachu w 5 minut. Cena uczciwa, ekipa terminowa. Polecam serdecznie." },
-        ].map((o) => (
-          <div key={o.who} className="border border-slate-200 bg-[#f8fafc] rounded-lg p-3 text-[13px]">
-            <div className="text-[#f59e0b] mb-1">★★★★★</div>
-            <div className="text-gray-800 italic mb-2">„{o.txt}”</div>
-            <div className="text-[11px] text-gray-600">— {o.who}, {o.where}</div>
-          </div>
-        ))}
+        <div className="flex flex-wrap gap-2">
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => onPick(cat.id)}
+              className="bg-white border border-slate-300 hover:border-[#1e40af] hover:text-[#1e40af] rounded-md px-3 py-1.5 text-[12px] font-semibold"
+            >
+              » {cat.name}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
