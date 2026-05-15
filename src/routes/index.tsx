@@ -627,7 +627,8 @@ function Results({
   const offers = CONTRACTORS.slice(0, count).map((c, idx) => {
     const [lo, hi] = service.basePrice;
     const mid = (lo + hi) / 2;
-    const unitPrice = Math.round(mid * c.rateMod);
+    // ceny podniesione o 30% w stosunku do bazy
+    const unitPrice = Math.round(mid * c.rateMod * 1.3);
     const total = Math.round(unitPrice * quantity);
     const materials = Math.round(total * (0.35 + (idx % 3) * 0.05));
     return { c, unitPrice, total, materials };
