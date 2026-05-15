@@ -304,7 +304,7 @@ function Index() {
 
       {/* Breadcrumbs */}
       <div className="max-w-[1100px] mx-auto px-4 py-2 text-xs text-gray-600">
-        <button onClick={goHome} className="text-[#1e40af] hover:underline">RemontPRO</button>
+        <button onClick={goHome} className="text-[#1e40af] hover:underline">Remivo</button>
         {currentCategory && (
           <>
             <span className="mx-1">›</span>
@@ -393,7 +393,7 @@ function Index() {
       <footer className="border-t-4 border-[#1e40af] bg-[#f1f5f9] text-[12px] text-gray-700">
         <div className="max-w-[1100px] mx-auto px-4 py-6 grid md:grid-cols-3 gap-6">
           <div>
-            <div className="font-bold text-[#1e40af] mb-2">RemontPRO sp. z o.o.</div>
+            <div className="font-bold text-[#1e40af] mb-2">Remivo sp. z o.o.</div>
             <p>Bezpłatny serwis porównywania ofert remontowych i budowlanych. Działamy na terenie całej Polski od 2009 roku. KRS: 0000345678 • NIP: 521-345-67-89</p>
             <p className="mt-2">ul. Prosta 44, 00-838 Warszawa</p>
           </div>
@@ -421,7 +421,7 @@ function Index() {
           </div>
         </div>
         <div className="border-t border-gray-300 py-3 text-center text-[11px] text-gray-600">
-          © 2009–2026 RemontPRO sp. z o.o. Wszelkie prawa zastrzeżone. Serwis ma charakter informacyjny. Prezentowane oferty nie stanowią oferty w rozumieniu Kodeksu cywilnego.
+          © 2009–2026 Remivo sp. z o.o. Wszelkie prawa zastrzeżone. Serwis ma charakter informacyjny. Prezentowane oferty nie stanowią oferty w rozumieniu Kodeksu cywilnego.
         </div>
       </footer>
     </div>
@@ -439,7 +439,7 @@ function SectionHeader({ title }: { title: string }) {
 function HomeContent({ onPick }: { onPick: (id: string) => void }) {
   return (
     <div>
-      <SectionHeader title="Witamy w serwisie RemontPRO" />
+      <SectionHeader title="Witamy w serwisie Remivo" />
       <p className="mb-4">
         <strong>Bezpłatne porównywanie ofert</strong> wykonawców remontowych i budowlanych w całej Polsce. Wybierz kategorię prac, aby rozpocząć wycenę.
       </p>
