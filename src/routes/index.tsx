@@ -653,16 +653,16 @@ function Results({
   quantity: number;
   onBack: () => void;
 }) {
-  // Deterministic selection of 1-4 contractors based on quantity
-  const count = Math.min(4, Math.max(2, ((Math.floor(quantity * 7) % 3) + 2)));
-  const offers = CONTRACTORS.slice(0, count).map((c, idx) => {
+  // Pick contractors based on category, deterministic count from quantity
+  const pool = CONTRACTORS_BY_CATEGORY[category.id] ?? [];
+  const count = Math.min(pool.length, Math.max(1, ((Math.floor(quantity * 7) % pool.length) + 1)));
+  const offers = pool.slice(0, count).map((c) => {
     const [lo, hi] = service.basePrice;
     const mid = (lo + hi) / 2;
-    // ceny podniesione o 30% w stosunku do bazy
+    // ceny podniesione o 30% w stosunku do bazy – tylko robocizna
     const unitPrice = Math.round(mid * c.rateMod * 1.3);
     const total = Math.round(unitPrice * quantity);
-    const materials = Math.round(total * (0.35 + (idx % 3) * 0.05));
-    return { c, unitPrice, total, materials };
+    return { c, unitPrice, total };
   });
 
   return (
@@ -677,22 +677,28 @@ function Results({
         </div>
       </div>
 
+      <div className="border-l-4 border-[#ea580c] bg-orange-50 px-3 py-2 mb-4 text-[12px] text-slate-800 rounded-r-md">
+        <strong className="text-[#c2410c]">Uwaga:</strong> wszystkie poniższe ceny obejmują wyłącznie <strong>robociznę</strong>.
+        Koszt materiałów budowlanych (np. tynk, farba, panele, glazura, papa itp.) nie jest wliczony i pokrywa go inwestor osobno –
+        zgodnie z faktycznym zużyciem oraz wybranym standardem materiału.
+      </div>
+
       <p className="mb-4 text-[13px] text-gray-700">
-        Znaleziono <strong>{offers.length}</strong> {offers.length === 1 ? "ofertę" : offers.length < 5 ? "oferty" : "ofert"} od sprawdzonych wykonawców. Oferty posortowane według rekomendacji systemu.
+        Znaleziono <strong>{offers.length}</strong> {offers.length === 1 ? "ofertę" : offers.length < 5 ? "oferty" : "ofert"} od sprawdzonych wykonawców z miasta Częstochowa. Oferty posortowane według rekomendacji systemu.
       </p>
 
       <div className="space-y-3">
-        {offers.map(({ c, unitPrice, total, materials }, i) => (
-          <div key={c.name} className="border border-slate-200 bg-white rounded-lg">
+        {offers.map(({ c, unitPrice, total }, i) => (
+          <div key={c.name} className="border border-slate-200 bg-white rounded-lg overflow-hidden">
             <div className="bg-[#f1f5f9] border-b border-gray-300 px-3 py-2 flex justify-between items-center">
               <div className="font-semibold text-[#475569] text-[14px]">
-                #{i + 1} &nbsp; {c.name}
+                <span className="text-[#ea580c]">#{i + 1}</span> &nbsp; {c.name}
               </div>
               <div className="text-[12px] text-gray-700">
                 ★ {c.rating.toFixed(1)} ({c.reviews} opinii)
               </div>
             </div>
-            <div className="grid md:grid-cols-[1fr_220px]">
+            <div className="grid md:grid-cols-[1fr_240px]">
               <div className="p-3 text-[13px]">
                 <div className="text-gray-700 mb-2">{c.note}</div>
                 <table className="text-[12px] w-full">
@@ -700,18 +706,20 @@ function Results({
                     <tr><td className="text-gray-600 py-0.5 pr-3">Lokalizacja:</td><td>{c.city}</td></tr>
                     <tr><td className="text-gray-600 py-0.5 pr-3">Doświadczenie:</td><td>{c.years} lat na rynku</td></tr>
                     <tr><td className="text-gray-600 py-0.5 pr-3">Termin:</td><td>{c.termin}</td></tr>
-                    <tr><td className="text-gray-600 py-0.5 pr-3">Cena jedn.:</td><td>{unitPrice.toLocaleString("pl-PL")} zł / {service.unit}</td></tr>
-                    <tr><td className="text-gray-600 py-0.5 pr-3">w tym materiał:</td><td>~ {materials.toLocaleString("pl-PL")} zł</td></tr>
+                    <tr><td className="text-gray-600 py-0.5 pr-3">Cena robocizny:</td><td>{unitPrice.toLocaleString("pl-PL")} zł / {service.unit}</td></tr>
                   </tbody>
                 </table>
               </div>
               <div className="bg-[#f8fafc] border-l border-gray-300 p-3 text-center flex flex-col justify-center">
-                <div className="text-[11px] text-gray-700 uppercase tracking-wide">Wycena całkowita</div>
+                <div className="text-[11px] text-gray-700 uppercase tracking-wide">Wycena robocizny</div>
                 <div className="text-[22px] font-bold text-[#475569] my-1" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-                  {total.toLocaleString("pl-PL")} zł
+                  {total.toLocaleString("pl-PL")} zł <span className="text-[14px] text-[#ea580c] font-semibold">+ materiały</span>
                 </div>
-                <div className="text-[10px] text-gray-600 mb-2">brutto, z VAT 8%/23%</div>
-                <button className="bg-[#64748b] hover:bg-[#475569] text-white text-[12px] font-semibold px-3 py-2 border border-[#334155]">
+                <div className="text-[10px] text-gray-600 leading-tight mb-2">
+                  Cena dotyczy <strong>tylko robocizny</strong>.<br/>
+                  Koszt materiałów po stronie inwestora.
+                </div>
+                <button className="bg-[#475569] hover:bg-[#ea580c] transition-colors text-white text-[12px] font-semibold px-3 py-2 border border-[#334155] rounded-md">
                   Skontaktuj się ▸
                 </button>
               </div>
@@ -721,7 +729,7 @@ function Results({
       </div>
 
       <div className="text-[11px] text-gray-600 mt-4 border-t border-gray-300 pt-3">
-        Powyższe wyceny mają charakter szacunkowy i zostały wygenerowane na podstawie średnich stawek rynkowych obowiązujących w Państwa regionie. Ostateczna cena zostanie ustalona po wizji lokalnej i przedstawieniu kosztorysu przez wykonawcę.
+        Powyższe wyceny mają charakter szacunkowy i obejmują wyłącznie koszt robocizny – materiały budowlane nie są wliczone i są zamawiane osobno przez inwestora. Ostateczna cena zostanie ustalona po wizji lokalnej i przedstawieniu kosztorysu przez wykonawcę.
       </div>
     </div>
   );
