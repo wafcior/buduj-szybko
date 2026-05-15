@@ -230,22 +230,53 @@ function Index() {
       <header className="bg-white border-b-2 border-[#1e40af]">
         <div className="max-w-[1100px] mx-auto px-4 py-4 flex items-center justify-between">
           <button onClick={goHome} className="flex items-center gap-3 text-left">
-            <div className="w-12 h-12 bg-[#1e40af] text-white flex items-center justify-center font-bold text-xl border border-[#1e3a8a]">
-              R<span className="text-[#f59e0b]">P</span>
+            <div className="w-12 h-12 bg-[#1e40af] text-white flex items-center justify-center font-bold text-xl border border-[#1e3a8a] rounded-md">
+              R<span className="text-[#f59e0b]">v</span>
             </div>
             <div>
               <div className="text-2xl font-bold text-[#1e40af] leading-none" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-                Remont<span className="text-[#f59e0b]">PRO</span>
+                Remi<span className="text-[#f59e0b]">vo</span>
               </div>
               <div className="text-[11px] text-gray-600 mt-1 uppercase tracking-wide">
                 Porównywarka ofert remontowych i budowlanych
               </div>
             </div>
           </button>
-          <div className="hidden md:block text-right text-xs text-gray-700">
-            <div>Infolinia (pn–pt 8:00–17:00):</div>
-            <div className="text-lg font-bold text-[#1e40af]">22 350 41 28</div>
+          <div className="flex items-center gap-4">
+            <div className="hidden sm:flex flex-col text-[11px] text-gray-700">
+              <label htmlFor="city-select" className="font-semibold text-[#1e40af] uppercase tracking-wide">Twoje miasto</label>
+              <select
+                id="city-select"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className="mt-1 border border-slate-300 rounded-md px-2 py-1.5 text-[13px] bg-white focus:outline-none focus:border-[#1e40af] min-w-[160px]"
+              >
+                {CITIES.map((c) => (
+                  <option key={c} value={c}>{c}</option>
+                ))}
+              </select>
+            </div>
+            <div className="hidden md:block text-right text-xs text-gray-700">
+              <div>Infolinia (pn–pt 8:00–17:00):</div>
+              <div className="text-lg font-bold text-[#1e40af]">22 350 41 28</div>
+            </div>
           </div>
+        </div>
+
+        {/* Mobile city selector */}
+        <div className="sm:hidden border-t border-gray-200 px-4 py-2 flex items-center gap-2 bg-[#f8fafc]">
+          <label htmlFor="city-select-mobile" className="text-[11px] font-semibold text-[#1e40af] uppercase">Miasto:</label>
+          <select
+            id="city-select-mobile"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            className="flex-1 border border-slate-300 rounded-md px-2 py-1.5 text-[13px] bg-white focus:outline-none focus:border-[#1e40af]"
+          >
+            {CITIES.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+        </div>
         </div>
 
         {/* Nav */}
