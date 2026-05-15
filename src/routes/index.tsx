@@ -194,9 +194,9 @@ function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: "Verdana, Geneva, Tahoma, sans-serif" }}>
+    <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: "'Inter', system-ui, -apple-system, Segoe UI, sans-serif" }}>
       {/* Top utility bar */}
-      <div className="bg-[#0b3d75] text-white text-[11px]">
+      <div className="bg-[#1e40af] text-white text-[11px]">
         <div className="max-w-[1100px] mx-auto px-4 py-1.5 flex flex-wrap justify-between gap-2">
           <span>Działamy od 2009 roku &nbsp;•&nbsp; Ponad 12 000 zrealizowanych wycen &nbsp;•&nbsp; Bezpłatna usługa dla zleceniodawców</span>
           <span>
@@ -208,15 +208,15 @@ function Index() {
       </div>
 
       {/* Header */}
-      <header className="bg-white border-b-2 border-[#0b3d75]">
+      <header className="bg-white border-b-2 border-[#1e40af]">
         <div className="max-w-[1100px] mx-auto px-4 py-4 flex items-center justify-between">
           <button onClick={goHome} className="flex items-center gap-3 text-left">
-            <div className="w-12 h-12 bg-[#0b3d75] text-white flex items-center justify-center font-bold text-xl border border-[#06264a]">
-              R<span className="text-[#f5a623]">P</span>
+            <div className="w-12 h-12 bg-[#1e40af] text-white flex items-center justify-center font-bold text-xl border border-[#1e3a8a]">
+              R<span className="text-[#f59e0b]">P</span>
             </div>
             <div>
-              <div className="text-2xl font-bold text-[#0b3d75] leading-none" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-                Remont<span className="text-[#f5a623]">PRO</span>
+              <div className="text-2xl font-bold text-[#1e40af] leading-none" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+                Remont<span className="text-[#f59e0b]">PRO</span>
               </div>
               <div className="text-[11px] text-gray-600 mt-1 uppercase tracking-wide">
                 Porównywarka ofert remontowych i budowlanych
@@ -225,16 +225,16 @@ function Index() {
           </button>
           <div className="hidden md:block text-right text-xs text-gray-700">
             <div>Infolinia (pn–pt 8:00–17:00):</div>
-            <div className="text-lg font-bold text-[#0b3d75]">22 350 41 28</div>
+            <div className="text-lg font-bold text-[#1e40af]">22 350 41 28</div>
           </div>
         </div>
 
         {/* Nav */}
-        <nav className="bg-[#f0f0f0] border-t border-b border-gray-300">
+        <nav className="bg-[#f1f5f9] border-t border-b border-gray-300">
           <div className="max-w-[1100px] mx-auto px-2 flex flex-wrap text-[13px]">
             <button
               onClick={goHome}
-              className={`px-4 py-2 border-r border-gray-300 hover:bg-white ${view.kind === "home" ? "bg-white font-semibold text-[#0b3d75]" : ""}`}
+              className={`px-4 py-2 border-r border-gray-300 hover:bg-white ${view.kind === "home" ? "bg-white font-semibold text-[#1e40af]" : ""}`}
             >
               Strona Główna
             </button>
@@ -243,7 +243,7 @@ function Index() {
                 key={cat.id}
                 onClick={() => openCategory(cat.id)}
                 className={`px-4 py-2 border-r border-gray-300 hover:bg-white ${
-                  "categoryId" in view && view.categoryId === cat.id ? "bg-white font-semibold text-[#0b3d75]" : ""
+                  "categoryId" in view && view.categoryId === cat.id ? "bg-white font-semibold text-[#1e40af]" : ""
                 }`}
               >
                 {cat.name}
@@ -255,11 +255,11 @@ function Index() {
 
       {/* Breadcrumbs */}
       <div className="max-w-[1100px] mx-auto px-4 py-2 text-xs text-gray-600">
-        <button onClick={goHome} className="text-[#0b3d75] hover:underline">RemontPRO</button>
+        <button onClick={goHome} className="text-[#1e40af] hover:underline">RemontPRO</button>
         {currentCategory && (
           <>
             <span className="mx-1">›</span>
-            <button onClick={() => openCategory(currentCategory.id)} className="text-[#0b3d75] hover:underline">
+            <button onClick={() => openCategory(currentCategory.id)} className="text-[#1e40af] hover:underline">
               {currentCategory.name}
             </button>
           </>
@@ -278,7 +278,7 @@ function Index() {
         {/* Sidebar */}
         <aside className="text-[13px]">
           <div className="border border-gray-300 bg-white">
-            <div className="bg-[#0b3d75] text-white px-3 py-2 font-semibold text-[12px] uppercase tracking-wide">
+            <div className="bg-[#1e40af] text-white px-3 py-2 font-semibold text-[12px] uppercase tracking-wide">
               Kategorie usług
             </div>
             <ul>
@@ -287,7 +287,7 @@ function Index() {
                   <button
                     onClick={() => openCategory(cat.id)}
                     className={`w-full text-left px-3 py-2 hover:bg-gray-100 ${
-                      "categoryId" in view && view.categoryId === cat.id ? "bg-gray-100 font-semibold text-[#0b3d75]" : ""
+                      "categoryId" in view && view.categoryId === cat.id ? "bg-gray-100 font-semibold text-[#1e40af]" : ""
                     }`}
                   >
                     » {cat.name}
@@ -297,8 +297,8 @@ function Index() {
             </ul>
           </div>
 
-          <div className="border border-gray-300 bg-[#fffbe6] mt-4 p-3 text-[12px] leading-relaxed">
-            <div className="font-semibold text-[#0b3d75] mb-1">ℹ Jak to działa?</div>
+          <div className="border border-gray-300 bg-[#fef9c3] mt-4 p-3 text-[12px] leading-relaxed">
+            <div className="font-semibold text-[#1e40af] mb-1">ℹ Jak to działa?</div>
             Wybierz kategorię i rodzaj pracy, podaj metraż lub opis, a nasz system w ciągu chwili wyświetli oferty sprawdzonych firm remontowych z Twojego regionu.
           </div>
 
@@ -341,29 +341,29 @@ function Index() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t-4 border-[#0b3d75] bg-[#f0f0f0] text-[12px] text-gray-700">
+      <footer className="border-t-4 border-[#1e40af] bg-[#f1f5f9] text-[12px] text-gray-700">
         <div className="max-w-[1100px] mx-auto px-4 py-6 grid md:grid-cols-3 gap-6">
           <div>
-            <div className="font-bold text-[#0b3d75] mb-2">RemontPRO sp. z o.o.</div>
+            <div className="font-bold text-[#1e40af] mb-2">RemontPRO sp. z o.o.</div>
             <p>Bezpłatny serwis porównywania ofert remontowych i budowlanych. Działamy na terenie całej Polski od 2009 roku. KRS: 0000345678 • NIP: 521-345-67-89</p>
             <p className="mt-2">ul. Prosta 44, 00-838 Warszawa</p>
           </div>
           <div>
-            <div className="font-bold text-[#0b3d75] mb-2">Informacje</div>
+            <div className="font-bold text-[#1e40af] mb-2">Informacje</div>
             <ul className="space-y-1">
-              <li><a href="#" className="text-[#0b3d75] hover:underline">O serwisie</a></li>
-              <li><a href="#" className="text-[#0b3d75] hover:underline">Dla wykonawców</a></li>
-              <li><a href="#" className="text-[#0b3d75] hover:underline">Regulamin</a></li>
-              <li><a href="#" className="text-[#0b3d75] hover:underline">Polityka prywatności</a></li>
-              <li><a href="#" className="text-[#0b3d75] hover:underline">Kontakt</a></li>
+              <li><a href="#" className="text-[#1e40af] hover:underline">O serwisie</a></li>
+              <li><a href="#" className="text-[#1e40af] hover:underline">Dla wykonawców</a></li>
+              <li><a href="#" className="text-[#1e40af] hover:underline">Regulamin</a></li>
+              <li><a href="#" className="text-[#1e40af] hover:underline">Polityka prywatności</a></li>
+              <li><a href="#" className="text-[#1e40af] hover:underline">Kontakt</a></li>
             </ul>
           </div>
           <div>
-            <div className="font-bold text-[#0b3d75] mb-2">Kategorie</div>
+            <div className="font-bold text-[#1e40af] mb-2">Kategorie</div>
             <ul className="space-y-1">
               {CATEGORIES.slice(0, 5).map((c) => (
                 <li key={c.id}>
-                  <button onClick={() => openCategory(c.id)} className="text-[#0b3d75] hover:underline">
+                  <button onClick={() => openCategory(c.id)} className="text-[#1e40af] hover:underline">
                     {c.name}
                   </button>
                 </li>
@@ -381,7 +381,7 @@ function Index() {
 
 function SectionHeader({ title }: { title: string }) {
   return (
-    <h1 className="text-[20px] font-bold text-[#0b3d75] border-b-2 border-[#0b3d75] pb-1 mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+    <h1 className="text-[20px] font-bold text-[#1e40af] border-b-2 border-[#1e40af] pb-1 mb-4" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       {title}
     </h1>
   );
@@ -399,9 +399,9 @@ function HomeContent({ onPick }: { onPick: (id: string) => void }) {
           <button
             key={cat.id}
             onClick={() => onPick(cat.id)}
-            className="text-left border border-gray-300 bg-white hover:border-[#0b3d75] hover:bg-[#f5f9ff] p-3 transition-colors"
+            className="text-left border border-gray-300 bg-white hover:border-[#1e40af] hover:bg-[#f1f5f9] p-3 transition-colors"
           >
-            <div className="font-semibold text-[#0b3d75] mb-1">» {cat.name}</div>
+            <div className="font-semibold text-[#1e40af] mb-1">» {cat.name}</div>
             <div className="text-[12px] text-gray-700">{cat.short}</div>
           </button>
         ))}
@@ -415,28 +415,28 @@ function CategoryContent({ category, onPick }: { category: Category; onPick: (si
     <div>
       <SectionHeader title={category.name} />
       <p className="mb-4 text-gray-700">{category.intro}</p>
-      <div className="bg-[#f5f9ff] border border-[#cfe0f5] px-3 py-2 mb-4 text-[13px]">
+      <div className="bg-[#f1f5f9] border border-[#e2e8f0] px-3 py-2 mb-4 text-[13px]">
         Proszę wybrać rodzaj prac z poniższej listy. Po wyborze usługi należy podać szacunkowy zakres robót (np. powierzchnię w m²).
       </div>
       <table className="w-full text-[13px] border-collapse border border-gray-300 bg-white">
         <thead>
-          <tr className="bg-[#0b3d75] text-white">
-            <th className="text-left px-3 py-2 border border-[#0b3d75]">Rodzaj prac</th>
-            <th className="text-left px-3 py-2 border border-[#0b3d75] hidden sm:table-cell">Opis</th>
-            <th className="text-left px-3 py-2 border border-[#0b3d75]">Jedn.</th>
-            <th className="px-3 py-2 border border-[#0b3d75]"></th>
+          <tr className="bg-[#1e40af] text-white">
+            <th className="text-left px-3 py-2 border border-[#1e40af]">Rodzaj prac</th>
+            <th className="text-left px-3 py-2 border border-[#1e40af] hidden sm:table-cell">Opis</th>
+            <th className="text-left px-3 py-2 border border-[#1e40af]">Jedn.</th>
+            <th className="px-3 py-2 border border-[#1e40af]"></th>
           </tr>
         </thead>
         <tbody>
           {category.services.map((s, i) => (
-            <tr key={s.id} className={i % 2 === 0 ? "bg-white" : "bg-[#fafafa]"}>
-              <td className="px-3 py-2 border border-gray-300 font-semibold text-[#0b3d75] align-top">{s.name}</td>
+            <tr key={s.id} className={i % 2 === 0 ? "bg-white" : "bg-[#f8fafc]"}>
+              <td className="px-3 py-2 border border-gray-300 font-semibold text-[#1e40af] align-top">{s.name}</td>
               <td className="px-3 py-2 border border-gray-300 text-gray-700 align-top hidden sm:table-cell">{s.description}</td>
               <td className="px-3 py-2 border border-gray-300 align-top">{s.unit}</td>
               <td className="px-3 py-2 border border-gray-300 align-top">
                 <button
                   onClick={() => onPick(s.id)}
-                  className="bg-[#f5a623] hover:bg-[#e09614] text-white text-[12px] font-semibold px-3 py-1.5 border border-[#c47e0d] whitespace-nowrap"
+                  className="bg-[#f59e0b] hover:bg-[#d97706] text-white text-[12px] font-semibold px-3 py-1.5 border border-[#b45309] whitespace-nowrap"
                 >
                   Wyceń ▸
                 </button>
@@ -468,12 +468,12 @@ function ServiceForm({
       <div className="text-[12px] text-gray-600 mb-3">Kategoria: {category.name}</div>
       <p className="mb-4 text-gray-800">{service.description}</p>
 
-      <form onSubmit={onSubmit} className="border border-gray-300 bg-[#f5f9ff] p-4">
-        <div className="font-semibold text-[#0b3d75] mb-3 text-[15px]">Formularz wyceny</div>
+      <form onSubmit={onSubmit} className="border border-gray-300 bg-[#f1f5f9] p-4">
+        <div className="font-semibold text-[#1e40af] mb-3 text-[15px]">Formularz wyceny</div>
         <div className="text-[13px] text-gray-700 mb-3">
           Proszę wprowadzić szacowany zakres robót w jednostkach: <strong>{service.unit}</strong>. Na tej podstawie system wyświetli oferty wykonawców działających w Państwa regionie.
         </div>
-        <label className="block text-[13px] font-semibold text-[#0b3d75] mb-1">
+        <label className="block text-[13px] font-semibold text-[#1e40af] mb-1">
           Zakres robót ({service.unit}):
         </label>
         <div className="flex gap-2 items-center mb-4">
@@ -483,7 +483,7 @@ function ServiceForm({
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
             placeholder={`np. ${service.unit === "szt." ? "3" : "85"}`}
-            className="border border-gray-400 px-3 py-2 text-[14px] w-48 bg-white focus:outline-none focus:border-[#0b3d75]"
+            className="border border-gray-400 px-3 py-2 text-[14px] w-48 bg-white focus:outline-none focus:border-[#1e40af]"
             autoFocus
             required
           />
@@ -492,7 +492,7 @@ function ServiceForm({
         <div className="flex gap-2">
           <button
             type="submit"
-            className="bg-[#0b3d75] hover:bg-[#06264a] text-white font-semibold px-5 py-2 text-[13px] border border-[#06264a]"
+            className="bg-[#1e40af] hover:bg-[#1e3a8a] text-white font-semibold px-5 py-2 text-[13px] border border-[#1e3a8a]"
           >
             Zatwierdź i pobierz oferty »
           </button>
@@ -510,7 +510,7 @@ function LoadingPanel() {
     <div>
       <SectionHeader title="Wyszukiwanie wykonawców..." />
       <div className="border border-gray-300 bg-white p-8 text-center">
-        <div className="inline-block w-10 h-10 border-4 border-[#0b3d75] border-t-transparent rounded-full animate-spin mb-4"></div>
+        <div className="inline-block w-10 h-10 border-4 border-[#1e40af] border-t-transparent rounded-full animate-spin mb-4"></div>
         <div className="text-[14px] text-gray-700">Trwa analiza dostępnych ofert w bazie wykonawców...</div>
         <div className="text-[12px] text-gray-500 mt-2">Sprawdzanie cen materiałów i terminów realizacji</div>
       </div>
@@ -543,12 +543,12 @@ function Results({
   return (
     <div>
       <SectionHeader title="Wyniki wyceny" />
-      <div className="border border-gray-300 bg-[#f5f9ff] p-3 mb-4 text-[13px]">
+      <div className="border border-gray-300 bg-[#f1f5f9] p-3 mb-4 text-[13px]">
         <div><strong>Usługa:</strong> {service.name}</div>
         <div><strong>Kategoria:</strong> {category.name}</div>
         <div><strong>Zakres:</strong> {quantity.toLocaleString("pl-PL")} {service.unit}</div>
         <div className="mt-2">
-          <button onClick={onBack} className="text-[#0b3d75] hover:underline text-[12px]">« zmień zakres robót</button>
+          <button onClick={onBack} className="text-[#1e40af] hover:underline text-[12px]">« zmień zakres robót</button>
         </div>
       </div>
 
@@ -559,8 +559,8 @@ function Results({
       <div className="space-y-3">
         {offers.map(({ c, unitPrice, total, materials }, i) => (
           <div key={c.name} className="border border-gray-300 bg-white">
-            <div className="bg-[#f0f0f0] border-b border-gray-300 px-3 py-2 flex justify-between items-center">
-              <div className="font-semibold text-[#0b3d75] text-[14px]">
+            <div className="bg-[#f1f5f9] border-b border-gray-300 px-3 py-2 flex justify-between items-center">
+              <div className="font-semibold text-[#1e40af] text-[14px]">
                 #{i + 1} &nbsp; {c.name}
               </div>
               <div className="text-[12px] text-gray-700">
@@ -580,13 +580,13 @@ function Results({
                   </tbody>
                 </table>
               </div>
-              <div className="bg-[#fffbe6] border-l border-gray-300 p-3 text-center flex flex-col justify-center">
+              <div className="bg-[#fef9c3] border-l border-gray-300 p-3 text-center flex flex-col justify-center">
                 <div className="text-[11px] text-gray-700 uppercase tracking-wide">Wycena całkowita</div>
-                <div className="text-[22px] font-bold text-[#0b3d75] my-1" style={{ fontFamily: "Georgia, serif" }}>
+                <div className="text-[22px] font-bold text-[#1e40af] my-1" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                   {total.toLocaleString("pl-PL")} zł
                 </div>
                 <div className="text-[10px] text-gray-600 mb-2">brutto, z VAT 8%/23%</div>
-                <button className="bg-[#f5a623] hover:bg-[#e09614] text-white text-[12px] font-semibold px-3 py-2 border border-[#c47e0d]">
+                <button className="bg-[#f59e0b] hover:bg-[#d97706] text-white text-[12px] font-semibold px-3 py-2 border border-[#b45309]">
                   Skontaktuj się ▸
                 </button>
               </div>
