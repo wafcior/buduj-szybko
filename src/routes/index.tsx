@@ -277,7 +277,7 @@ function Index() {
       <main className="max-w-[1100px] mx-auto px-4 pb-10 grid md:grid-cols-[220px_1fr] gap-6">
         {/* Sidebar */}
         <aside className="text-[13px]">
-          <div className="border border-gray-300 bg-white">
+          <div className="border border-slate-200 bg-white rounded-lg">
             <div className="bg-[#1e40af] text-white px-3 py-2 font-semibold text-[12px] uppercase tracking-wide">
               Kategorie usług
             </div>
@@ -297,12 +297,12 @@ function Index() {
             </ul>
           </div>
 
-          <div className="border border-gray-300 bg-[#fef9c3] mt-4 p-3 text-[12px] leading-relaxed">
+          <div className="border border-amber-200 bg-amber-50 rounded-lg mt-4 p-3 text-[12px] leading-relaxed">
             <div className="font-semibold text-[#1e40af] mb-1">ℹ Jak to działa?</div>
             Wybierz kategorię i rodzaj pracy, podaj metraż lub opis, a nasz system w ciągu chwili wyświetli oferty sprawdzonych firm remontowych z Twojego regionu.
           </div>
 
-          <div className="border border-gray-300 bg-white mt-4">
+          <div className="border border-slate-200 bg-white rounded-lg mt-4">
             <div className="bg-gray-200 px-3 py-2 font-semibold text-[12px] uppercase">Popularne dziś</div>
             <ul className="text-[12px]">
               <li className="border-t border-gray-200 px-3 py-1.5">› Nakładanie papy termozgrzewalnej</li>
@@ -399,7 +399,7 @@ function HomeContent({ onPick }: { onPick: (id: string) => void }) {
           <button
             key={cat.id}
             onClick={() => onPick(cat.id)}
-            className="text-left border border-gray-300 bg-white hover:border-[#1e40af] hover:bg-[#f1f5f9] p-3 transition-colors"
+            className="text-left border border-slate-200 bg-white rounded-lg hover:border-[#1e40af] hover:bg-[#f1f5f9] p-3 transition-colors"
           >
             <div className="font-semibold text-[#1e40af] mb-1">» {cat.name}</div>
             <div className="text-[12px] text-gray-700">{cat.short}</div>
@@ -415,10 +415,10 @@ function CategoryContent({ category, onPick }: { category: Category; onPick: (si
     <div>
       <SectionHeader title={category.name} />
       <p className="mb-4 text-gray-700">{category.intro}</p>
-      <div className="bg-[#f1f5f9] border border-[#e2e8f0] px-3 py-2 mb-4 text-[13px]">
+      <div className="bg-[#f1f5f9] border border-slate-200 rounded-md px-3 py-2 mb-4 text-[13px]">
         Proszę wybrać rodzaj prac z poniższej listy. Po wyborze usługi należy podać szacunkowy zakres robót (np. powierzchnię w m²).
       </div>
-      <table className="w-full text-[13px] border-collapse border border-gray-300 bg-white">
+      <table className="w-full text-[13px] border-collapse border border-slate-200 bg-white rounded-lg">
         <thead>
           <tr className="bg-[#1e40af] text-white">
             <th className="text-left px-3 py-2 border border-[#1e40af]">Rodzaj prac</th>
@@ -468,7 +468,7 @@ function ServiceForm({
       <div className="text-[12px] text-gray-600 mb-3">Kategoria: {category.name}</div>
       <p className="mb-4 text-gray-800">{service.description}</p>
 
-      <form onSubmit={onSubmit} className="border border-gray-300 bg-[#f1f5f9] p-4">
+      <form onSubmit={onSubmit} className="border border-slate-200 bg-slate-50 rounded-lg p-4">
         <div className="font-semibold text-[#1e40af] mb-3 text-[15px]">Formularz wyceny</div>
         <div className="text-[13px] text-gray-700 mb-3">
           Proszę wprowadzić szacowany zakres robót w jednostkach: <strong>{service.unit}</strong>. Na tej podstawie system wyświetli oferty wykonawców działających w Państwa regionie.
@@ -483,7 +483,7 @@ function ServiceForm({
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
             placeholder={`np. ${service.unit === "szt." ? "3" : "85"}`}
-            className="border border-gray-400 px-3 py-2 text-[14px] w-48 bg-white focus:outline-none focus:border-[#1e40af]"
+            className="border border-slate-300 rounded-md px-3 py-2 text-[14px] w-48 bg-white focus:outline-none focus:border-[#1e40af]"
             autoFocus
             required
           />
@@ -509,7 +509,7 @@ function LoadingPanel() {
   return (
     <div>
       <SectionHeader title="Wyszukiwanie wykonawców..." />
-      <div className="border border-gray-300 bg-white p-8 text-center">
+      <div className="border border-slate-200 bg-white rounded-lg p-8 text-center">
         <div className="inline-block w-10 h-10 border-4 border-[#1e40af] border-t-transparent rounded-full animate-spin mb-4"></div>
         <div className="text-[14px] text-gray-700">Trwa analiza dostępnych ofert w bazie wykonawców...</div>
         <div className="text-[12px] text-gray-500 mt-2">Sprawdzanie cen materiałów i terminów realizacji</div>
@@ -543,7 +543,7 @@ function Results({
   return (
     <div>
       <SectionHeader title="Wyniki wyceny" />
-      <div className="border border-gray-300 bg-[#f1f5f9] p-3 mb-4 text-[13px]">
+      <div className="border border-slate-200 bg-slate-50 rounded-lg p-3 mb-4 text-[13px]">
         <div><strong>Usługa:</strong> {service.name}</div>
         <div><strong>Kategoria:</strong> {category.name}</div>
         <div><strong>Zakres:</strong> {quantity.toLocaleString("pl-PL")} {service.unit}</div>
@@ -558,7 +558,7 @@ function Results({
 
       <div className="space-y-3">
         {offers.map(({ c, unitPrice, total, materials }, i) => (
-          <div key={c.name} className="border border-gray-300 bg-white">
+          <div key={c.name} className="border border-slate-200 bg-white rounded-lg">
             <div className="bg-[#f1f5f9] border-b border-gray-300 px-3 py-2 flex justify-between items-center">
               <div className="font-semibold text-[#1e40af] text-[14px]">
                 #{i + 1} &nbsp; {c.name}
