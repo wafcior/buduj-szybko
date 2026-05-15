@@ -180,6 +180,7 @@ type View =
 function Index() {
   const [view, setView] = useState<View>({ kind: "home" });
   const [quantityInput, setQuantityInput] = useState("");
+  const [city, setCity] = useState<string>("Warszawa");
 
   const currentCategory = useMemo(
     () => ("categoryId" in view ? CATEGORIES.find((c) => c.id === view.categoryId) : undefined),
