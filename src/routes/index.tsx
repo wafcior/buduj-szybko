@@ -152,6 +152,24 @@ const CONTRACTORS: Contractor[] = [
   { name: "Tadeusz Lewandowski – Usługi Wykończeniowe", city: "Legionowo, mazowieckie", years: 12, rating: 4.5, reviews: 64, termin: "rozpoczęcie w ciągu 5 dni", rateMod: 0.95, note: "Krótki termin realizacji. Specjalizacja w pracach wykończeniowych." },
 ];
 
+const CITIES: string[] = [
+  "Warszawa", "Kraków", "Łódź", "Wrocław", "Poznań", "Gdańsk", "Szczecin", "Bydgoszcz",
+  "Lublin", "Białystok", "Katowice", "Gdynia", "Częstochowa", "Radom", "Sosnowiec",
+  "Toruń", "Kielce", "Rzeszów", "Gliwice", "Zabrze", "Olsztyn", "Bielsko-Biała",
+  "Bytom", "Zielona Góra", "Rybnik", "Ruda Śląska", "Tychy", "Opole", "Gorzów Wielkopolski",
+  "Dąbrowa Górnicza", "Płock", "Elbląg", "Wałbrzych", "Włocławek", "Tarnów", "Chorzów",
+  "Koszalin", "Kalisz", "Legnica", "Grudziądz", "Jaworzno", "Słupsk", "Jastrzębie-Zdrój",
+  "Nowy Sącz", "Jelenia Góra", "Siedlce", "Mysłowice", "Konin", "Piotrków Trybunalski",
+  "Lubin", "Inowrocław", "Ostrowiec Świętokrzyski", "Suwałki", "Stargard", "Gniezno",
+  "Ostrów Wielkopolski", "Siemianowice Śląskie", "Głogów", "Pabianice", "Leszno",
+  "Żory", "Zamość", "Pruszków", "Łomża", "Ełk", "Tarnowskie Góry", "Chełm", "Tomaszów Mazowiecki",
+  "Przemyśl", "Stalowa Wola", "Kędzierzyn-Koźle", "Mielec", "Piła", "Biała Podlaska",
+  "Legionowo", "Świdnica", "Bełchatów", "Skierniewice", "Świnoujście", "Zgierz", "Wejherowo",
+  "Rumia", "Tczew", "Otwock", "Sopot", "Krosno", "Starachowice", "Nysa", "Racibórz",
+  "Radomsko", "Skarżysko-Kamienna", "Pruszcz Gdański", "Puławy", "Ostrołęka", "Lubliniec",
+  "Kołobrzeg", "Kutno", "Mińsk Mazowiecki", "Sieradz", "Tarnobrzeg", "Bolesławiec", "Sanok",
+];
+
 type View =
   | { kind: "home" }
   | { kind: "category"; categoryId: string }
