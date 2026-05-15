@@ -1,4 +1,7 @@
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[build]
+  command = "vite build"
+  publish = "dist/client"
+
+[dev]
+  command = "vite dev"
+  port = 3000
