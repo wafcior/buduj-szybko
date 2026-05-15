@@ -262,11 +262,11 @@ function Index() {
         <div className="max-w-[1100px] mx-auto px-4 py-4 flex items-center justify-between">
           <button onClick={goHome} className="flex items-center gap-3 text-left">
             <div className="w-12 h-12 bg-[#475569] text-white flex items-center justify-center font-bold text-xl border border-[#334155] rounded-md">
-              R<span className="text-[#64748b]">v</span>
+              R<span className="text-[#fb923c]">v</span>
             </div>
             <div>
               <div className="text-2xl font-bold text-[#475569] leading-none" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-                Remi<span className="text-[#64748b]">vo</span>
+                Remi<span className="text-[#ea580c]">vo</span>
               </div>
               <div className="text-[11px] text-gray-600 mt-1 uppercase tracking-wide">
                 Porównywarka ofert remontowych i budowlanych
